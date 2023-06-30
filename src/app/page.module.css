@@ -1,0 +1,19 @@
+.headerContainer {
+    background: linear-gradient(to right, rgb(11 15 16) 55%, black);
+    height: 350px;
+    display: flex;
+    align-items: center;
+}
+
+.banner {
+    width: 50%;
+    height: 350px;
+    mask-image: linear-gradient(90deg, #000000 84%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000000 84%, rgba(0, 0, 0, 0) 100%);
+}
+
+.bannerText {
+    font-style: italic;
+    color: white;
+
+}
