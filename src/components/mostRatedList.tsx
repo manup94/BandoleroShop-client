@@ -1,10 +1,12 @@
+import { Product } from "@/app/types/product"
 import ProductCard from "./productCard"
 
-function mostRatedList({ products }: any) {
+
+function MostRatedList({ products }: { products: Product[] }) {
     return (
         <ul className="grid grid-cols-3 gap-4">
             {
-                products?.map((product: any) => {
+                products?.map((product) => {
                     return <ProductCard product={product} />
                 })
             }
@@ -12,4 +14,4 @@ function mostRatedList({ products }: any) {
     )
 }
 
-export default mostRatedList
+export default MostRatedList

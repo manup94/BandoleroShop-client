@@ -1,7 +1,8 @@
 'use client'
-import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import userIcon from '../../public/images/user.png'
+import { useUser } from '@/hooks/useUser'
+import AuthDialog from './auth/dialog'
 
 const navigation = [
     { name: 'Inicio', href: '/', current: false },
@@ -9,78 +10,37 @@ const navigation = [
     { name: 'About', href: '/about', current: false }
 ]
 
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
 
 export default function Navigation() {
+    const isLoggedIn = useUser(state => state.loggedIn)
     return (
-        <Disclosure as="nav" className="bg-gray-800">
+        <nav className="navbar text-white p-5 flex justify-between bg-[#1e293b]">
+            <ul className='flex space-x-2 '>
+                {
+                    navigation.map(elm => {
+                        return <li className='hover:underline'>
+                            <Link href={elm.href}>{elm.name}</Link>
+                        </li>
+                    })
+                }
+            </ul>
+            <ul className='flex space-x-5 '>
+                <li>
+                    {isLoggedIn ? "Hola Manuel" : <AuthDialog />}
 
-            {({ open }) => (
-                <>
+                </li>
+                <li>
+                    <button onClick={() => { console.log('wefwef'); }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M17.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"></path>
+                            <path d="M6 8v11a1 1 0 0 0 1.806 .591l3.694 -5.091v.055"></path>
+                            <path d="M6 8h15l-3.5 7l-7.1 -.747a4 4 0 0 1 -3.296 -2.493l-2.853 -7.13a1 1 0 0 0 -.928 -.63h-1.323"></path>
+                        </svg>
 
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                        <div className="relative flex h-16 items-center justify-between">
-                            <div className="flex flex-shrink-0 items-center">
-                                <img className="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-                                <img className="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-                            </div>
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                                {/* Mobile menu button*/}
-                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                                    <span className="sr-only">Open main menu</span>
-                                    {open ? (
-                                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                                    ) : (
-                                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                                    )}
-                                </Disclosure.Button>
-                            </div>
-                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-
-                                <div className="hidden sm:ml-6 sm:block">
-                                    <div className="flex space-x-4">
-                                        {navigation.map((item) => (
-                                            <Link
-                                                key={item.name}
-                                                href={item.href}
-                                                className={classNames(
-                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'rounded-md px-3 py-2 text-sm font-medium'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </Link>
-
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <Disclosure.Panel className="sm:hidden">
-                        <div className="space-y-1 px-2 pb-3 pt-2">
-                            {navigation.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'rounded-md px-3 py-2 text-sm font-medium'
-                                    )}
-                                    aria-current={item.current ? 'page' : undefined}
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </Disclosure.Panel>
-                </>
-            )}
-        </Disclosure>
+                    </button>
+                </li>
+            </ul>
+        </nav >
     )
 }

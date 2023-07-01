@@ -1,5 +1,6 @@
+import { Product } from "@/app/types/product"
 
-function productCard({ product }: any) {
+function ProductCard({ product }: { product: Product }) {
     return (
         <li key={product.id}>
 
@@ -22,4 +23,4 @@ function productCard({ product }: any) {
     )
 }
 
-export default productCard
+export default ProductCard
