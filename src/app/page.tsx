@@ -18,6 +18,7 @@ async function HomePage() {
       <div className=" container mx-auto">
         <div>
           <h2 className="text-2xl text-left m-5">Productos destacados</h2>
+          <hr className="m-7" />
           <MostRatedList products={topRated} />
         </div>
       </div>

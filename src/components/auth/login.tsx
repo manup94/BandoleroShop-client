@@ -30,7 +30,7 @@ export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
     })
 
     return <>
-        <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
+        <Dialog.Title className="text-mauve12 m-5 text-[17px] font-medium">
             Login
         </Dialog.Title>
         <form onSubmit={onSubmit}>
@@ -62,11 +62,11 @@ export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
 
             {errors.password?.message && <p className='text-red-500'>{errors.password?.message}</p>}
 
-            <div className="mt-[25px] flex justify-end">
+            <div className="mt-[25px] flex justify-between ">
 
-                <p>¿No tienes cuenta aun? <span role="button" onClick={onSignUp}>Haz click aqui</span></p>
+                <p >¿No tienes cuenta aun? <span role="button" className='font-bold' onClick={onSignUp}>Haz click aqui</span></p>
 
-                <button type='submit' disabled={isLoading} className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                <button type='submit' disabled={isLoading} className=" bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                     {isLoading ?
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

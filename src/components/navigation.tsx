@@ -3,6 +3,7 @@ import Link from 'next/link'
 import userIcon from '../../public/images/user.png'
 import { useUser } from '@/hooks/useUser'
 import AuthDialog from './auth/dialog'
+import { Button } from 'react-bootstrap'
 
 const navigation = [
     { name: 'Inicio', href: '/', current: false },
@@ -18,14 +19,14 @@ export default function Navigation() {
             <ul className='flex space-x-2 '>
                 {
                     navigation.map(elm => {
-                        return <li className='hover:underline'>
+                        return <li className='hover:underline' key={navigation.indexOf(elm)}>
                             <Link href={elm.href}>{elm.name}</Link>
                         </li>
                     })
                 }
             </ul>
             <ul className='flex space-x-5 '>
-                <li>
+                <li className='hover:cursor-pointer'>
                     {isLoggedIn ? "Hola Manuel" : <AuthDialog />}
 
                 </li>
