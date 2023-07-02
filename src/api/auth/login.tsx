@@ -1,6 +1,4 @@
-//Login
-
-import { schemaType } from "@/components/loginDialog"
+import { schemaType } from "@/components/auth/login"
 
 async function Login(data: schemaType) {
     const response = await fetch('https://fakestoreapi.com/auth/login', {

@@ -1,4 +1,5 @@
-import { Login } from '@/api/auth'
+'use client'
+import { SignUp } from '@/api/auth/signup'
 import { useUser } from '@/hooks/useUser'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -6,6 +7,7 @@ import { Cross2Icon } from '@radix-ui/react-icons'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+
 
 const schema = z.object({
     username: z.string().min(1, "El campo username es requerido"),
@@ -24,19 +26,40 @@ const schema = z.object({
 
 export type schemaType = z.infer<typeof schema>
 
+
 export function SignUpForm({ onLogin }: { onLogin: () => void }) {
     const [isLoading, setLoading] = useState(false)
-    const setLoggedIn = useUser(state => state.setLoggedIn)
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
+    console.log(' antes de cuando pulsas', isLoading);
     const onSubmit = handleSubmit((data) => {
+
         setLoading(true)
-        Login(data).then(({ token }) => {
-            setLoggedIn(!!token)
+        console.log('despues de pulsar', isLoading);
+
+        SignUp({
+            email: data.email,
+            username: data.username,
+            password: data.password,
+            firstname: data.firstname,
+            lastname: data.lastname,
+            city: data.city,
+            street: data.street,
+            zipcode: data.zipcode,
+            number: data.number,
+            phone: data.phone
         })
+            /// falta por configurar el spiner para que pare cuando envie la peticion
+            .then(() => {
+                console.log('listo');
+            })
             .catch(() => { setError('password', { message: 'contraseña o usuario incorrectos' }) })
-            .finally(() => setLoading(false))
+            .finally(() => {
+                setLoading(!isLoading)
+                console.log('despues del fetch', isLoading);
+            })
+
     })
 
     return <>
@@ -111,6 +134,7 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="street"
                     placeholder='Introduce tu direccion'
+
                 />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -122,6 +146,7 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="number"
                     placeholder='Introduce tu numero de direccion'
+                    type='number'
                 />
                 <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="zipcode">
                     Codigo postal *
@@ -152,6 +177,7 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                     {...register('phone')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="phone"
+                    type='number'
                     placeholder='Introduce tu telefono'
                 />
             </fieldset>
@@ -172,7 +198,7 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                 <button type='submit' disabled={isLoading} className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                     {isLoading ?
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg> :
                         'Registrarme'
@@ -188,5 +214,5 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                     <Cross2Icon />
                 </button>
             </Dialog.Close>
-        </form></>
+        </form ></>
 }
