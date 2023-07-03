@@ -2,32 +2,27 @@ import { schemaType } from "@/components/auth/signup"
 
 
 async function SignUp(data: schemaType) {
-    fetch('https://fakestoreapi.com/users', {
-        method: "POST",
-        body: JSON.stringify(
-            {
-                email: data.email,
-                username: data.username,
-                password: data.password,
-                name: {
-                    firstname: data.firstname,
-                    lastname: data.lastname
-                },
-                address: {
-                    city: data.city,
-                    street: data.street,
-                    number: data.number,
-                    zipcode: data.zipcode,
+    try {
+        const url = `${process.env.API_BASE_URL}/auth/local/register`
+        const params = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
 
-                },
-                phone: data.phone
-            }
-        ),
+        const response = await fetch(url, params)
+        const result = await response.json()
 
+        if (response.status !== 200) throw result
 
-    })
-        .then(res => res.json())
-        .then(json => console.log(json))
+        return result
+
+    } catch (error) {
+        throw error
+    }
+
 }
 
 export { SignUp }

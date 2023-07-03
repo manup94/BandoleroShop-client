@@ -1,9 +1,22 @@
 'use client'
 import Link from 'next/link'
-import userIcon from '../../public/images/user.png'
 import { useUser } from '@/hooks/useUser'
 import AuthDialog from './auth/dialog'
-import { Button } from 'react-bootstrap'
+
+import {
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    MenuItemOption,
+    MenuGroup,
+    MenuOptionGroup,
+    MenuDivider,
+} from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+
+
+
 
 const navigation = [
     { name: 'Inicio', href: '/', current: false },
@@ -13,7 +26,15 @@ const navigation = [
 
 
 export default function Navigation() {
-    const isLoggedIn = useUser(state => state.loggedIn)
+    const setToken = useUser(state => state.setToken)
+    const { token, username } = useUser()
+    const [isReady, setIsReady] = useState(false)
+
+    useEffect(() => {
+        setIsReady(true)
+    }, [])
+
+
     return (
         <nav className="navbar text-white p-5 flex justify-between bg-[#1e293b]">
             <ul className='flex space-x-2 '>
@@ -27,7 +48,22 @@ export default function Navigation() {
             </ul>
             <ul className='flex space-x-5 '>
                 <li className='hover:cursor-pointer'>
-                    {isLoggedIn ? "Hola Manuel" : <AuthDialog />}
+                    {token && isReady ?
+                        <Menu>
+                            <MenuButton >
+                                Hola {username}
+                            </MenuButton>
+                            <MenuList className='"p-5 rounded-md shadow menu dropdown-content z-[2] rounded-box w-52 absolute top-full left-0 mt-1 invisible opacity-0 transition-all duration-300 bg-gradient-to-r from-[#1e293b] to-purple-500"' >
+                                <MenuItem  >
+                                    <Link href={'/profile'} className='m-3'>Mi perfil</Link>
+                                </MenuItem>
+                                <MenuItem >
+                                    <button onClick={() => setToken(null)} className='m-3'>Cerrar sesión</button>
+                                </MenuItem>
+                            </MenuList>
+                        </Menu>
+                        :
+                        <AuthDialog />}
 
                 </li>
                 <li>

@@ -8,23 +8,27 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const schema = z.object({
-    username: z.string().min(1, "El campo username es requerido"),
-    password: z.string().min(1, "El campo password es requerido")
+    identifier: z.string().min(1, "Todos los campos son obligatorios"),
+    password: z.string().min(1, "Todos los campos son obligatorios")
 })
 
 export type schemaType = z.infer<typeof schema>
 
 export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
     const [isLoading, setLoading] = useState(false)
-    const setLoggedIn = useUser(state => state.setLoggedIn)
+    const setToken = useUser(state => state.setToken)
+    const setUsername = useUser(state => state.setUsername)
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
     const onSubmit = handleSubmit((data) => {
         setLoading(true)
-        Login(data).then(({ token }) => {
-            setLoggedIn(!!token)
-        })
+        Login(data)
+            .then((res) => {
+
+                setToken(res.jwt)
+                setUsername(res.user.username)
+            })
             .catch(() => { setError('password', { message: 'contraseña o usuario incorrectos' }) })
             .finally(() => setLoading(false))
     })
@@ -35,13 +39,13 @@ export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
         </Dialog.Title>
         <form onSubmit={onSubmit}>
             <fieldset className="mb-[15px] flex items-center gap-5">
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="username">
-                    Usuario
+                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="identifier">
+                    Usuario o Email
                 </label>
                 <input
-                    {...register('username')}
+                    {...register('identifier')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="username"
+                    id="identifier"
                     placeholder='Introduce tu usuario'
                 />
             </fieldset>
@@ -58,9 +62,9 @@ export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
                     placeholder='Introduce tu contraseña'
                 />
             </fieldset>
-            {errors.username?.message && <p className='text-red-500'>{errors.username?.message}</p>}
 
-            {errors.password?.message && <p className='text-red-500'>{errors.password?.message}</p>}
+
+            {errors.identifier?.message || errors.password?.message && <p className='text-red-500'>{errors.identifier?.message || errors.password?.message}</p>}
 
             <div className="mt-[25px] flex justify-between ">
 

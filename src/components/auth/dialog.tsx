@@ -5,16 +5,11 @@ import { SignUpForm } from './signup';
 import Image from 'next/image';
 
 
-
-
 function AuthDialog() {
     const [mode, setMode] = useState<'login' | 'signup'>('login')
     const [open, setOpen] = useState(false)
 
-
     return (
-
-
 
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
@@ -37,7 +32,6 @@ function AuthDialog() {
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root >
-
 
     )
 }

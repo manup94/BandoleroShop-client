@@ -4,8 +4,9 @@ import { useUser } from '@/hooks/useUser'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useRouter } from "next/navigation";
 import { z } from 'zod'
 
 
@@ -13,15 +14,6 @@ const schema = z.object({
     username: z.string().min(1, "El campo username es requerido"),
     password: z.string().min(1, "El campo password es requerido"),
     email: z.string().min(1, 'El campo email es requerido'),
-    firstname: z.string().min(1, 'El campo nombre es requerido'),
-    lastname: z.string().min(1, 'El campo apellido es requerido'),
-    street: z.string().min(1, 'El campo de calle es requerido'),
-    number: z.string().min(1, 'El campo numero de calle es requerido'),
-    zipcode: z.string().min(1, 'El campo codigo postal es requerido'),
-    city: z.string().min(1, 'El campo ciudad es requerido'),
-    phone: z.string().min(1, 'El campo telefono es requerido')
-
-
 })
 
 export type schemaType = z.infer<typeof schema>
@@ -29,36 +21,21 @@ export type schemaType = z.infer<typeof schema>
 
 export function SignUpForm({ onLogin }: { onLogin: () => void }) {
     const [isLoading, setLoading] = useState(false)
+    const [isRegister, setIsRegister] = useState(false)
+    const router = useRouter()
+
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
-    console.log(' antes de cuando pulsas', isLoading);
     const onSubmit = handleSubmit((data) => {
-
-        setLoading(true)
-        console.log('despues de pulsar', isLoading);
-
+        console.log(isRegister);
         SignUp({
             email: data.email,
             username: data.username,
-            password: data.password,
-            firstname: data.firstname,
-            lastname: data.lastname,
-            city: data.city,
-            street: data.street,
-            zipcode: data.zipcode,
-            number: data.number,
-            phone: data.phone
+            password: data.password
         })
-            /// falta por configurar el spiner para que pare cuando envie la peticion
-            .then(() => {
-                console.log('listo');
-            })
-            .catch(() => { setError('password', { message: 'contraseña o usuario incorrectos' }) })
-            .finally(() => {
-                setLoading(!isLoading)
-                console.log('despues del fetch', isLoading);
-            })
+
+
 
     })
 
@@ -67,7 +44,6 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
             Registro
         </Dialog.Title>
         <form onSubmit={onSubmit}>
-            <p className='m-5 underline'>Datos principales</p>
             <fieldset className="mb-[15px] flex items-center gap-5">
                 <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="username">
                     Usuario *
@@ -102,100 +78,14 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                     placeholder='Introduce tu contraseña'
                 />
             </fieldset>
-            <p className='m-5 underline'>Direccion de envio</p>
-
-            <fieldset className="mb-[15px] flex items-center gap-5">
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="firstname">
-                    Nombre *
-                </label>
-                <input
-                    {...register('firstname')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="firstname"
-                    placeholder='Introduce tu nombre'
-                />
-
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="lastname">
-                    Apellidos *
-                </label>
-                <input
-                    {...register('lastname')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="lastname"
-                    placeholder='Introduce tu apellido'
-                />
-            </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="street">
-                    Calle *
-                </label>
-                <input
-                    {...register('street')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="street"
-                    placeholder='Introduce tu direccion'
-
-                />
-            </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="number">
-                    Numero *
-                </label>
-                <input
-                    {...register('number')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="number"
-                    placeholder='Introduce tu numero de direccion'
-                    type='number'
-                />
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="zipcode">
-                    Codigo postal *
-                </label>
-                <input
-                    {...register('zipcode')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="zipcode"
-                    placeholder='Introduce tu codigo postal'
-                />
-            </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="city">
-                    Ciudad *
-                </label>
-                <input
-                    {...register('city')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="city"
-                    placeholder='Introduce tu ciudad'
-                />
-            </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
-                <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="phone">
-                    Telefono
-                </label>
-                <input
-                    {...register('phone')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                    id="phone"
-                    type='number'
-                    placeholder='Introduce tu telefono'
-                />
-            </fieldset>
             {errors.username?.message && <p className='text-red-500'>{errors.username?.message}</p>}
             {errors.password?.message && <p className='text-red-500'>{errors.password?.message}</p>}
             {errors.email?.message && <p className='text-red-500'>{errors.email?.message}</p>}
-            {errors.firstname?.message && <p className='text-red-500'>{errors.firstname?.message}</p>}
-            {errors.lastname?.message && <p className='text-red-500'>{errors.lastname?.message}</p>}
-            {errors.city?.message && <p className='text-red-500'>{errors.city?.message}</p>}
-            {errors.number?.message && <p className='text-red-500'>{errors.number?.message}</p>}
-            {errors.zipcode?.message && <p className='text-red-500'>{errors.zipcode?.message}</p>}
-            {errors.street?.message && <p className='text-red-500'>{errors.street?.message}</p>}
-            {errors.phone?.message && <p className='text-red-500'>{errors.phone?.message}</p>}
 
             <div className="mt-[25px] flex justify-end">
 
 
-                <button type='submit' disabled={isLoading} className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                {/* <button type='submit' disabled={isLoading} className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                     {isLoading ?
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -203,6 +93,12 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                         </svg> :
                         'Registrarme'
                     }
+                </button> */}
+                <button type='submit' className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+
+                    registrar
+
+
                 </button>
 
             </div>
