@@ -1,12 +1,12 @@
 
-import { FetchTopRatedProducts } from "@/api/products"
+import { FetchProducts } from "@/api/products"
 import MostRatedList from "@/components/mostRatedList"
 import styles from './page.module.css'
 
 
 async function HomePage() {
 
-  const topRated = await FetchTopRatedProducts()
+  const prueba = await FetchProducts()
 
   return (
     <>
@@ -19,7 +19,7 @@ async function HomePage() {
         <div>
           <h2 className="text-2xl text-left m-5">Productos destacados</h2>
           <hr className="m-7" />
-          <MostRatedList products={topRated} />
+          <MostRatedList products={prueba} />
         </div>
       </div>
     </>

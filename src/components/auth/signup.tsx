@@ -6,7 +6,6 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRouter } from "next/navigation";
 import { z } from 'zod'
 
 
@@ -19,21 +18,28 @@ const schema = z.object({
 export type schemaType = z.infer<typeof schema>
 
 
-export function SignUpForm({ onLogin }: { onLogin: () => void }) {
+export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: () => void }) {
     const [isLoading, setLoading] = useState(false)
     const [isRegister, setIsRegister] = useState(false)
-    const router = useRouter()
+
 
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
     const onSubmit = handleSubmit((data) => {
-        console.log(isRegister);
+
+        setLoading(true)
         SignUp({
             email: data.email,
             username: data.username,
             password: data.password
         })
+            .finally(() => {
+                setLoading(false)
+                onOpen()
+            })
+
+
 
 
 
@@ -85,7 +91,7 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
             <div className="mt-[25px] flex justify-end">
 
 
-                {/* <button type='submit' disabled={isLoading} className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                <button type='submit' disabled={isLoading} className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                     {isLoading ?
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -93,13 +99,8 @@ export function SignUpForm({ onLogin }: { onLogin: () => void }) {
                         </svg> :
                         'Registrarme'
                     }
-                </button> */}
-                <button type='submit' className="bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-
-                    registrar
-
-
                 </button>
+
 
             </div>
             <Dialog.Close asChild>

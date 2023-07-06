@@ -28,7 +28,7 @@ function AuthDialog() {
                         <Image src={'/../public/images/logo.png'} alt='logo' width={300} height={300}></Image>
                     </div>
                     {mode === 'login' && <LoginForm onSignUp={() => setMode('signup')} />}
-                    {mode === 'signup' && <SignUpForm onLogin={() => setMode('login')} />}
+                    {mode === 'signup' && <SignUpForm onOpen={() => setOpen(false)} onLogin={() => setMode('login')} />}
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root >
