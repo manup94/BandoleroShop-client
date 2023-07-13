@@ -4,7 +4,7 @@ async function FetchProducts() {
 
     const url = `http://localhost:1337/api/products`
 
-    fetch('http://localhost:1337/api/products')
+    fetch('http://localhost:1337/api/products/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
