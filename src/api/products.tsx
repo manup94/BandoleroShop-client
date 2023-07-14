@@ -1,26 +1,17 @@
 
 async function FetchProducts() {
-
-
-    const url = `http://localhost:1337/api/products`
-
-    fetch('http://localhost:1337/api/products/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la solicitud');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            return data
-            // Haz algo con los datos recibidos
-        })
-        .catch(error => {
-            console.error(error);
-        });
-
-
+    try {
+        const response = await fetch('http://localhost:1337/api/products/');
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
+        const data = await response.json();
+        console.log(data)
+        return data.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
 // async function FetchTopRatedProducts() {

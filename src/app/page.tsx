@@ -1,13 +1,20 @@
-
+'use client'
 import { FetchProducts } from "@/api/products"
 import MostRatedList from "@/components/mostRatedList"
 import styles from './page.module.css'
+import { useEffect, useState } from "react"
 
 
-async function HomePage() {
+function HomePage() {
 
-  const prueba = await FetchProducts()
-  console.log(prueba);
+  const [products, setProducts] = useState()
+
+  useEffect(() => {
+    FetchProducts()
+      .then(res => setProducts(res))
+
+  }, [])
+
   return (
     <>
       <header className={styles.headerContainer}>
@@ -19,7 +26,8 @@ async function HomePage() {
         <div>
           <h2 className="text-2xl text-left m-5">Productos destacados:</h2>
           <hr className="m-7" />
-          <MostRatedList products={prueba} />
+
+          <MostRatedList products={products} />
         </div>
       </div>
     </>

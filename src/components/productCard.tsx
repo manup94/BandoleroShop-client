@@ -1,16 +1,15 @@
 import { Product } from "@/app/types/product"
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product }) {
     return (
-        <li key={product.id}>
+        <li >
 
             <div className="max-w-sm rounded overflow-hidden shadow-lg h-[30rem] ">
                 <img className="w-full object-contain h-[16rem] " src={product.image} alt={'img'} />
                 <div className="px-6 py-4 ">
-                    <div className="font-bold text-m mb-2">{product.title}</div>
-                    <p className="text-gray-700 text-base mb-2">Categoria: {product.category}</p>
+                    <div className="font-bold text-m mb-2">{product.attributes.title}</div>
                     <p className="text-gray-700 text-base">
-                        Precio: {product.price} EUR
+                        Precio: {product.attributes.price} EUR
                     </p>
                 </div>
                 <div className="px-6 py-4">
