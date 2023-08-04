@@ -9,6 +9,10 @@ function AuthDialog() {
     const [mode, setMode] = useState<'login' | 'signup'>('login')
     const [open, setOpen] = useState(false)
 
+    const handleLoginSuccess = () => {
+        setOpen(false);
+    };
+
     return (
 
         <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -27,7 +31,7 @@ function AuthDialog() {
                     <div className='justify-center flex' >
                         <Image src={'/../public/images/logo.png'} alt='logo' width={300} height={300}></Image>
                     </div>
-                    {mode === 'login' && <LoginForm onSignUp={() => setMode('signup')} />}
+                    {mode === 'login' && <LoginForm onSignUp={() => setMode('signup')} onLoginSuccess={handleLoginSuccess} />}
                     {mode === 'signup' && <SignUpForm onOpen={() => setOpen(false)} onLogin={() => setMode('login')} />}
                 </Dialog.Content>
             </Dialog.Portal>

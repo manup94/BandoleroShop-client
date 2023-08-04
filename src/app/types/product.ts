@@ -6,8 +6,19 @@ export type Product = {
         description: string
         category: string
         slug: string
-
+        mainImg: {
+            data: {
+                attributes: {
+                    formats: {
+                        medium: {
+                            url: string
+                        }
+                    }
+                }
+            }
+        }
 
     }
     id: number
+
 }

@@ -1,14 +1,19 @@
 'use client'
-import { usePrivatePage } from "@/hooks/usePrivatePages"
+import Info from "@/components/account/info"
+import Tabs from "@/components/account/tabs"
 
-async function ProfilePage() {
-    usePrivatePage()
+
+function ProfilePage() {
+
+
+
 
     return (
 
-        <>
-            <h1>tu perfil</h1>
-        </>
+        <section className="justify-center">
+            <Info />
+            <Tabs />
+        </section>
 
     )
 }

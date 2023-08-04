@@ -1,11 +1,15 @@
 import { Product } from "@/app/types/product"
 
-function ProductCard({ product }) {
+function ProductCard({ product }: { product: Product }) {
+
+    const mainImg = product.attributes.mainImg.data.attributes.formats.medium.url
+
+
     return (
         <li >
 
             <div className="max-w-sm rounded overflow-hidden shadow-lg h-[30rem] ">
-                <img className="w-full object-contain h-[16rem] " src={product.image} alt={'img'} />
+                <img className="w-full object-contain h-[16rem] " src={mainImg} alt={'img'} />
                 <div className="px-6 py-4 ">
                     <div className="font-bold text-m mb-2">{product.attributes.title}</div>
                     <p className="text-gray-700 text-base">

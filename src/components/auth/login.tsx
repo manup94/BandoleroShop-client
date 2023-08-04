@@ -1,5 +1,5 @@
 import { Login } from '@/api/auth/login'
-import { useUser } from '@/hooks/useUser'
+import { useAuth } from '@/hooks/useAuth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
@@ -14,10 +14,11 @@ const schema = z.object({
 
 export type schemaType = z.infer<typeof schema>
 
-export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
+export function LoginForm({ onSignUp, onLoginSuccess }: { onSignUp: () => void }) {
+
     const [isLoading, setLoading] = useState(false)
-    const setToken = useUser(state => state.setToken)
-    const setUsername = useUser(state => state.setUsername)
+    const { login } = useAuth()
+
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
@@ -26,8 +27,8 @@ export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
         Login(data)
             .then((res) => {
 
-                setToken(res.jwt)
-                setUsername(res.user.username)
+                login(res.jwt)
+                onLoginSuccess()
             })
             .catch(() => { setError('password', { message: 'contraseña o usuario incorrectos' }) })
             .finally(() => setLoading(false))
@@ -79,6 +80,7 @@ export function LoginForm({ onSignUp }: { onSignUp: () => void }) {
                         ' Iniciar sesion'
                     }
                 </button>
+
 
             </div>
             <Dialog.Close asChild>

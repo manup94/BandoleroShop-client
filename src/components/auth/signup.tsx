@@ -4,13 +4,14 @@ import { useUser } from '@/hooks/useUser'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 
 const schema = z.object({
     username: z.string().min(1, "El campo username es requerido"),
+    name: z.string().min(1, "El campo nombre es requerido"),
     password: z.string().min(1, "El campo password es requerido"),
     email: z.string().min(1, 'El campo email es requerido'),
 })
@@ -20,8 +21,6 @@ export type schemaType = z.infer<typeof schema>
 
 export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: () => void }) {
     const [isLoading, setLoading] = useState(false)
-    const [isRegister, setIsRegister] = useState(false)
-
 
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
@@ -32,6 +31,7 @@ export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: (
         SignUp({
             email: data.email,
             username: data.username,
+            name: data.name,
             password: data.password
         })
             .finally(() => {
@@ -44,6 +44,7 @@ export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: (
 
 
     })
+
 
     return <>
         <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
@@ -59,6 +60,17 @@ export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: (
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="username"
                     placeholder='Introduce tu usuario'
+                />
+            </fieldset>
+            <fieldset className="mb-[15px] flex items-center gap-5">
+                <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="name">
+                    Nombre completo *
+                </label>
+                <input
+                    {...register('name')}
+                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                    id="name"
+                    placeholder='Introduce tu nombre completo'
                 />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">

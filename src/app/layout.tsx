@@ -1,5 +1,8 @@
 import './globals.css'
 import Navigation from '../components/navigation'
+import Footer from '@/components/auth/footer'
+import { AuthProvider } from '@/contexts'
+
 
 export const metadata = {
   title: 'Tienda de prueba',
@@ -14,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-        <Navigation></Navigation>
-        {children}
+        <AuthProvider>
+          <Navigation />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )
