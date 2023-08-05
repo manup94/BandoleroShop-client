@@ -1,10 +1,11 @@
 import { schemaType } from "@/components/auth/login"
+import { ENV } from "@/utils/constants"
 
 
 
 async function Login(data: schemaType) {
     try {
-        const url = `${process.env.API_BASE_URL}/auth/local`
+        const url = `${ENV.API_URL}/${ENV.ENDPOINTS.AUTH.LOGIN}`
         const params = {
             method: 'POST',
             headers: {

@@ -1,11 +1,11 @@
-import { useUser } from '@/hooks/useUser'
 import { useState, useEffect } from 'react'
 import { DateTime } from 'luxon'
 import { User } from '@/app/types/user'
+import { useAuth } from '@/hooks/useAuth'
 
 function Info() {
 
-    const { user } = useUser()
+    const { user } = useAuth()
     const [userInfo, setUserInfo] = useState<User | null>(null)
     useEffect(() => {
         setUserInfo(user)

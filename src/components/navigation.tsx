@@ -26,8 +26,7 @@ const navigation = [
 ]
 
 export default function Navigation() {
-    // const setToken = useAuth(state => state.setToken)
-    const { token, user } = useAuth()
+    const { logout, user } = useAuth()
     const [isReady, setIsReady] = useState(false)
     const total = 5
     const router = useRouter()
@@ -39,7 +38,7 @@ export default function Navigation() {
 
 
     const goToCart = () => {
-        if (!token || token === null) {
+        if (!user) {
 
             router.push('/about')
         }
@@ -63,7 +62,7 @@ export default function Navigation() {
             </ul>
             <ul className='flex space-x-5 '>
                 <li className='hover:cursor-pointer'>
-                    {token && isReady ?
+                    {user && isReady ?
                         <Menu>
                             <MenuButton >
                                 Hola {user?.username}
@@ -73,7 +72,7 @@ export default function Navigation() {
                                     <Link href={'/profile'} className='m-3'>Mi perfil</Link>
                                 </MenuItem>
                                 <MenuItem >
-                                    {/* <button onClick={() => setToken(null)} className='m-3'>Cerrar sesión</button> */}
+                                    <button onClick={logout} className='m-3'>Cerrar sesión</button>
                                 </MenuItem>
                             </MenuList>
                         </Menu>
@@ -82,7 +81,7 @@ export default function Navigation() {
 
                 </li>
                 {
-                    token && isReady ?
+                    user && isReady ?
                         <li>
 
 

@@ -3,7 +3,6 @@ import { usePrivatePage } from "@/hooks/usePrivatePages"
 
 function page() {
 
-    usePrivatePage()
 
     return (
         <div>carritoooo</div>
