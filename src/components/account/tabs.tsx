@@ -1,21 +1,50 @@
 'use client'
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ChangeNameForm from "./settings/changeNameForm";
+import ChangeEmailForm from "./settings/changeEmailForm";
+import ChangePasswordForm from "./settings/changePasswordForm";
+import AddAddress from "./address/addAddress";
+import ListAddresses from "./address/listAddresses";
 
 function Tabs() {
 
+    const router = useRouter()
+    const { logout } = useAuth()
     const [activeTab, setActiveTab] = useState(0);
 
     const handleTabClick = (index: any) => {
         setActiveTab(index);
     };
 
+    const onLogout = () => {
+        logout()
+        router.push('/')
+
+    }
+
     const tabData = [
         { title: 'Mis pedidos', content: 'Contenido de la pestaña 1' },
         { title: 'Lista de deseos', content: 'Contenido de la pestaña 2' },
-        { title: 'Direcciones', content: 'Contenido de la pestaña 3' },
-        { title: 'Ajustes', content: 'Contenido de la pestaña 4' }
+        {
+            title: 'Direcciones', content: <div className="p-10 flex w-full justify-between   ">
+                <ListAddresses />
+                <AddAddress />
+            </div>
+        },
+        {
+            title: 'Ajustes', content: <div className="p-10  ">
+                <ChangeNameForm />
+                <hr className="mb-7 mt-7" />
+                <ChangeEmailForm />
+                <hr className="mb-7 mt-7"></hr>
+                <ChangePasswordForm />
+            </div>
+        }
 
     ];
+
 
     return (
         <div className="tabs">
@@ -33,7 +62,7 @@ function Tabs() {
                         </a>
                     </li>
                 ))}
-                <button>
+                <button onClick={onLogout}>
                     <img className="ml-3 w-5" src="./images/logout.png" alt="logout" />
                 </button>
             </ul>

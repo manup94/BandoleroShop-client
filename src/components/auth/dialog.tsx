@@ -12,6 +12,9 @@ function AuthDialog() {
     const handleLoginSuccess = () => {
         setOpen(false);
     };
+    const closeDialog = () => {
+        setMode('login')
+    }
 
     return (
 
@@ -26,13 +29,13 @@ function AuthDialog() {
 
             </Dialog.Trigger>
             <Dialog.Portal>
-                <Dialog.Overlay className="bg-black/50 data-[state=open]:animate-overlayShow fixed inset-0" />
+                <Dialog.Overlay onClick={closeDialog} className="bg-black/50 data-[state=open]:animate-overlayShow fixed inset-0" />
                 <Dialog.Content className="overflow-auto data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[600px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
                     <div className='justify-center flex' >
                         <Image src={'/../public/images/logo.png'} alt='logo' width={300} height={300}></Image>
                     </div>
                     {mode === 'login' && <LoginForm onSignUp={() => setMode('signup')} onLoginSuccess={handleLoginSuccess} />}
-                    {mode === 'signup' && <SignUpForm onOpen={() => setOpen(false)} onLogin={() => setMode('login')} />}
+                    {mode === 'signup' && <SignUpForm onOpen={() => setOpen(false)} onLogin={closeDialog} />}
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root >

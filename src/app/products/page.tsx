@@ -1,4 +1,4 @@
-import MostRatedList from "@/components/mostRatedList"
+import MostRatedList from "@/components/latestProductList"
 
 async function ProductsPage() {
 

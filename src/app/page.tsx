@@ -1,7 +1,7 @@
 'use client'
 import { FetchNewProducts } from "@/api/products"
 import { FetchCategories } from "@/api/categories"
-import MostRatedList from "@/components/mostRatedList"
+import MostRatedList from "@/components/latestProductList"
 import { Category } from "./types/category"
 import Link from "next/link"
 import styles from './page.module.css'

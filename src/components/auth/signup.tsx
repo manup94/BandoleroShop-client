@@ -1,6 +1,5 @@
 'use client'
 import { SignUp } from '@/api/auth/signup'
-import { useUser } from '@/hooks/useUser'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
@@ -38,9 +37,6 @@ export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: (
                 setLoading(false)
                 onOpen()
             })
-
-
-
 
 
     })

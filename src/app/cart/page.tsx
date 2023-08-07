@@ -1,5 +1,4 @@
 'use client'
-import { usePrivatePage } from "@/hooks/usePrivatePages"
 
 function page() {
 
