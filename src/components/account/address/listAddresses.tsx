@@ -25,16 +25,18 @@ function ListAddresses(props) {
         })()
     }, [reload])
 
-    if (!addresses) return <p>No hay direcciones aun</p>
+
 
     return (
+
         <div className="d-block">
-
-            {addresses.map((address: any) => {
-                return <Address key={address.id} onReload={onReload} addressId={address.id} address={address.attributes} />
-            })}
-
-
+            {addresses && addresses.length > 0 ? (
+                addresses.map((address: any) => (
+                    <Address key={address.id} onReload={onReload} addressId={address.id} address={address.attributes} />
+                ))
+            ) : (
+                <p className="font-bold">No hay direcciones aún</p>
+            )}
         </div>
     )
 }

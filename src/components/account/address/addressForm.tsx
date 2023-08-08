@@ -18,7 +18,6 @@ const schema = z.object({
 export type schemaType = z.infer<typeof schema>
 
 const addressCtrl = new Address()
-
 function AddressForm(props: any) {
     const { onOpenClose, onReload, addressId, address } = props
     const { user } = useAuth()
@@ -27,9 +26,9 @@ function AddressForm(props: any) {
     })
 
     const onSubmit = handleSubmit((data) => {
+
         if (addressId) {
-            //NO PILLLA EL CONSOLELOG!!!!!!!!
-            console.log('actualizae');
+            addressCtrl.update(data, addressId)
         } else {
             addressCtrl.create(data, user.id)
         }
@@ -49,7 +48,8 @@ function AddressForm(props: any) {
                     {...register('title')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="title"
-                    placeholder='Introduce el titulo'
+                    placeholder='Introduce un titulo'
+                    defaultValue={address?.title}
                 />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -60,7 +60,8 @@ function AddressForm(props: any) {
                     {...register('name')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="name"
-                    placeholder='Introduce tu nombre completo'
+                    placeholder='Introduce un nombre'
+                    defaultValue={address?.name}
                 />
                 <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="address">
                     Direccion *
@@ -69,7 +70,8 @@ function AddressForm(props: any) {
                     {...register('address')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="address"
-                    placeholder='Introduce tu dirección'
+                    placeholder='Introduce una dirección'
+                    defaultValue={address?.address}
                 />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -80,7 +82,8 @@ function AddressForm(props: any) {
                     {...register('state')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="state"
-                    placeholder='Introduce tu pais'
+                    placeholder='Introduce un pais'
+                    defaultValue={address?.state}
                 />
                 <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="city">
                     Ciudad *
@@ -89,7 +92,8 @@ function AddressForm(props: any) {
                     {...register('city')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="city"
-                    placeholder='Introduce tu ciudad'
+                    placeholder='Introduce una ciudad'
+                    defaultValue={address?.city}
                 />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -100,7 +104,8 @@ function AddressForm(props: any) {
                     {...register('postal_code')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="postal_code"
-                    placeholder='Introduce tu codigo postal'
+                    placeholder='Introduce el codigo de postal'
+                    defaultValue={address?.postal_code}
                 />
                 <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="phone">
                     Telefono *
@@ -109,7 +114,8 @@ function AddressForm(props: any) {
                     {...register('phone')}
                     className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="phone"
-                    placeholder='Introduce tu numero de telefono'
+                    placeholder='Introduce tu numero de contacto'
+                    defaultValue={address?.phone}
                 />
             </fieldset>
             {errors.title?.message && <p className='text-red-500'>{errors.title?.message}</p>}
