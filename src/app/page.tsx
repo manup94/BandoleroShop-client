@@ -6,6 +6,7 @@ import { Category } from "./types/category"
 import Link from "next/link"
 import styles from './page.module.css'
 import { useEffect, useState } from "react"
+import BarTrust from "@/components/barTrust"
 
 
 function HomePage() {
@@ -54,6 +55,7 @@ function HomePage() {
 
         </div>
       </div>
+      <BarTrust></BarTrust>
     </>
 
 

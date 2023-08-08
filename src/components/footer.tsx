@@ -3,6 +3,7 @@
 function Footer() {
     return (
         <footer className="bg-[#1e293b] p-10 text-white flex justify-around">
+            <img className="h-22 w-22" src="/images/logo.png" alt="logo" />
             <section >
                 <h5>Informacion de Contacto</h5>
                 <address className="m-5">BandoleroShop <br />C/ Arjona, 23 <br /> 41001 Sevilla,<br /> España <br /> +34 (0) 619 193
