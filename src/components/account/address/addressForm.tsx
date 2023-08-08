@@ -19,21 +19,27 @@ export type schemaType = z.infer<typeof schema>
 
 const addressCtrl = new Address()
 
-function AddressForm({ onOpenClose }) {
-
+function AddressForm(props: any) {
+    const { onOpenClose, onReload, addressId, address } = props
     const { user } = useAuth()
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
 
     const onSubmit = handleSubmit((data) => {
-        addressCtrl.create(data, user.id)
+        if (addressId) {
+            //NO PILLLA EL CONSOLELOG!!!!!!!!
+            console.log('actualizae');
+        } else {
+            addressCtrl.create(data, user.id)
+        }
+        onReload()
         onOpenClose(false)
     })
 
     return (
         <form onSubmit={onSubmit}>
-            <h2 className="mb-5 font-bold">Nueva Dirección</h2>
+
 
             <fieldset className="mb-[15px] flex items-center gap-5">
                 <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="title">

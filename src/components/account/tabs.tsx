@@ -13,10 +13,14 @@ function Tabs() {
     const router = useRouter()
     const { logout } = useAuth()
     const [activeTab, setActiveTab] = useState(0);
+    const [reload, setReload] = useState(false)
 
     const handleTabClick = (index: any) => {
         setActiveTab(index);
     };
+    const onReload = () => {
+        setReload((prevState) => !prevState)
+    }
 
     const onLogout = () => {
         logout()
@@ -29,8 +33,8 @@ function Tabs() {
         { title: 'Lista de deseos', content: 'Contenido de la pestaña 2' },
         {
             title: 'Direcciones', content: <div className="p-10 flex w-full justify-between   ">
-                <ListAddresses />
-                <AddAddress />
+                <ListAddresses reload={reload} onReload={onReload} />
+                <AddAddress onReload={onReload} />
             </div>
         },
         {

@@ -1,15 +1,18 @@
 'use client'
 import { useState, useEffect } from "react"
-import { Address } from "@/api/address"
+import { Address as AddressCtrl } from "@/api/address"
 import { useAuth } from "@/hooks/useAuth"
 import AddressForm from "./addressForm"
+import Address from "./address"
 
-const addressCtrl = new Address()
+const addressCtrl = new AddressCtrl()
 
-function ListAddresses() {
+function ListAddresses(props) {
+
 
     const [addresses, setAddresses] = useState(null)
     const { user } = useAuth()
+    const { reload, onReload } = props
 
     useEffect(() => {
         (async () => {
@@ -20,17 +23,17 @@ function ListAddresses() {
                 console.log(error)
             }
         })()
-    }, [addresses])
+    }, [reload])
 
     if (!addresses) return <p>No hay direcciones aun</p>
 
     return (
         <div className="d-block">
-            <ul>
-                {addresses.map((address: any) => {
-                    return <li>{address.attributes.title}</li>
-                })}
-            </ul>
+
+            {addresses.map((address: any) => {
+                return <Address key={address.id} onReload={onReload} addressId={address.id} address={address.attributes} />
+            })}
+
 
         </div>
     )
