@@ -1,18 +1,27 @@
+import { ENV } from "@/utils/constants"
 
+export class Categories {
 
-async function FetchCategories() {
-    try {
-        const response = await fetch('http://localhost:1337/api/categories?populate=*');
-        if (!response.ok) {
-            throw new Error('Error en la solicitud');
+    async GetCategories() {
+        try {
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CATEGORY}?populate=*`
+            const params = {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+
+            const response = await fetch(url, params)
+            const result = await response.json()
+
+            if (response.status !== 200) throw result
+
+            return result
+
+        } catch (error) {
+            throw error
         }
-        const data = await response.json();
-        return data.data;
-    } catch (error) {
-        console.error(error);
-        throw error;
     }
 }
 
-
-export { FetchCategories }

@@ -1,34 +1,55 @@
 import { Product } from "@/app/types/product";
+import { ENV } from "@/utils/constants";
 
-async function FetchProducts() {
-    try {
-        const response = await fetch('http://localhost:1337/api/products?populate=*');
-        if (!response.ok) {
-            throw new Error('Error en la solicitud');
+export class Products {
+
+
+    async GetProducts() {
+        try {
+            const url = 'http://localhost:1337/api/products?populate=*'
+            const params = {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+
+            const response = await fetch(url, params)
+            const result = await response.json()
+
+            if (response.status !== 200) throw result
+
+            return result
+
+        } catch (error) {
+            throw error
         }
-        const data = await response.json();
-        return data.data;
-    } catch (error) {
-        console.error(error);
-        throw error;
     }
+
+    async GetByCategory(category: string, page: number) {
+        try {
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCTS}?filters[category][title][$eq]=${category}&pagination[page]=${page}&pagination[pageSize]=6&populate=*`
+            const params = {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+
+            const response = await fetch(url, params)
+            const result = await response.json()
+
+            if (response.status !== 200) throw result
+
+            return result
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+
 }
 
-async function FetchNewProducts() {
-    try {
-        const products = await FetchProducts();
-        const sortedProducts = products.sort((a: Product, b: Product) => {
-            const dateA = new Date(a.attributes.releaseDate).getTime();
-            const dateB = new Date(b.attributes.releaseDate).getTime();
-            return dateB - dateA;
-        });
-        const news = sortedProducts.slice(0, 6);
-        console.log(news);
-        return news
-    } catch (error) {
-        console.error('Error fetching products:', error);
-    }
-}
 
 
-export { FetchProducts, FetchNewProducts }
