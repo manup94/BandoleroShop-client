@@ -2,7 +2,7 @@
 import { Product } from "@/app/types/product";
 import { Products } from "@/api/products"
 import { Categories } from "@/api/categories"
-import ProductsList from "@/components/producstList"
+import ProductsList from "@/components/productsList"
 import { Category } from "./types/category"
 import Link from "next/link"
 import styles from './page.module.css'

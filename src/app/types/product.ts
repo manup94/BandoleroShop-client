@@ -12,6 +12,9 @@ export type Product = {
                     formats: {
                         medium: {
                             url: string
+                        },
+                        small: {
+                            url: string
                         }
                     }
                 }

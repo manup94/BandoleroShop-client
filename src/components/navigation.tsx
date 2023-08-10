@@ -11,17 +11,11 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
 } from '@chakra-ui/react'
-
 
 
 const navigation = [
     { name: 'Inicio', href: '/', current: false },
-    { name: 'Productos', href: '/products', current: false },
     { name: 'About', href: '/about', current: false }
 ]
 
@@ -36,6 +30,12 @@ export default function Navigation() {
 
     }, [])
 
+    const onSearch = (event: any) => {
+
+        const value = event.target.value;
+        router.replace(`/search?s=${value}`)
+        console.log(value);
+    }
 
     const goToCart = () => {
         if (!user) {
@@ -60,7 +60,20 @@ export default function Navigation() {
                     })
                 }
             </ul>
-            <ul className='flex space-x-5 '>
+            <ul className='flex space-x-5'>
+                <li className='mr-10'>
+                    <form className="flex items-center">
+                        <input
+                            onSubmit={(event) => event.preventDefault()}
+                            id='search-product'
+                            onChange={onSearch}
+                            type="text"
+                            placeholder="Buscar..."
+                            className="bg-white text-black outline-none  py-1 px-2"
+                        />
+                        <img className='w-8   bg-purple-500 text-white p-1 ' src="/images/search.png" alt="search-bar" />
+                    </form>
+                </li>
                 <li className='hover:cursor-pointer'>
                     {user && isReady ?
                         <Menu>
@@ -80,6 +93,7 @@ export default function Navigation() {
                         <AuthDialog />}
 
                 </li>
+
                 {
                     user && isReady ?
                         <li>

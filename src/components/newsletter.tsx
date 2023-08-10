@@ -6,7 +6,7 @@ export default function Newsletter() {
             <h2 className="mb-4 font-bold">Subscríbete a la Newsletter</h2>
 
             <div className="flex items-center">
-                <form className="flex justify-center align-middle bg-black" action="#">
+                <form onSubmit={(event) => event.preventDefault()} className="flex justify-center align-middle bg-black" action="#">
                     <input className="border-none outline-none h-10 p-5 mr-3 " type="email" placeholder="Correo" />
                     <button className="w-10" type="submit">
                         <img className="w-7" src="images/arrow.png" alt="arrow" />

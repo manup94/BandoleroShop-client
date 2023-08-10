@@ -1,5 +1,5 @@
 'use client'
-import ProductsList from "@/components/producstList"
+import ProductsList from "@/components/productsList"
 import { Products } from "@/api/products";
 import { useState, useEffect } from "react";
 import Pagination from "@/components/pagination";
@@ -15,7 +15,7 @@ export default function CategoryPage(props: any) {
     const [products, setProducts] = useState(null)
     const [pagination, setPagination] = useState<object | null>(null)
     const [actualPage, setActualPage] = useState(1)
-    console.log(pagination);
+
     const changePage = (newPage: number) => {
         setActualPage(newPage)
     }
