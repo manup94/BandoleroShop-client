@@ -1,45 +1,37 @@
 
 
-export default function Carousel(props: any) {
-    const { images } = props
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+export default function CustomCarousel({ images }) {
     return (
-
-        <div className="flex items-center justify-center py-8">
-            <div className="relative max-w-lg mx-auto">
-                <div className="overflow-hidden rounded-lg">
-                    <div className="relative w-full">
-                        <div className="carousel">
-                            {images.map((image: any, index: any) => (
-
-                                <div
-                                    key={index}
-                                    className={`carousel-item absolute ${index === 0 ? 'opacity-100' : 'opacity-0'
-                                        } transition-opacity duration-300`}
-                                >
-                                    <img
-                                        src={image}
-                                        alt={`Image ${index}`}
-                                        className="object-cover w-full h-64 sm:h-96"
-                                    />
-                                </div>
-                            ))}
+        <div className=" h-120 w-80">
+            <div className="max-w-lg mx-auto">
+                <Carousel showArrows={false} showThumbs={true}>
+                    {images.map((image, index) => (
+                        <div key={index}>
+                            <img
+                                className='object-cover'
+                                src={image}
+                                alt={`Image ${index}`}
+                                style={{ maxHeight: '400px', maxWidth: '100%' }}
+                            />
                         </div>
-                    </div>
-                </div>
-                <div className="mt-2 -mb-4 flex justify-center space-x-2">
-                    {images.map((_: any, index: any) => (
-                        <button
-                            key={index}
-                            className={`w-3 h-3 rounded-full bg-gray-400 hover:bg-gray-600 ${index === 0 ? 'bg-gray-600' : ''
-                                }`}
-                        ></button>
                     ))}
-                </div>
+                </Carousel>
             </div>
         </div>
-    )
-
-
-
-
+    );
 }
+
+
+
+
+
+
+
+
+
+
+

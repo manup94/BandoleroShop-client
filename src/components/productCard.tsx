@@ -1,10 +1,10 @@
 import { Product } from "@/app/types/product"
 import Link from "next/link"
+import WhisListIcon from "./whisListIcon"
 
 function ProductCard({ product }: { product: Product }) {
 
     const mainImg = product.attributes.mainImg.data.attributes.formats.medium.url
-
 
     return (
         < >
@@ -19,10 +19,11 @@ function ProductCard({ product }: { product: Product }) {
                         </p>
                     </div>
                 </Link>
-                <div className="px-6 py-4">
+                <div className="px-6 flex gap-5 py-4">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Add to Cart
                     </button>
+                    <WhisListIcon productId={product.id} />
                 </div>
             </div>
         </>

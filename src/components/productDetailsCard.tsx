@@ -1,5 +1,6 @@
 import { Product } from "@/app/types/product"
 import Carousel from "./carousel"
+import WhisListIcon from "./whisListIcon"
 
 
 function ProductDetailsCard({ product }: { product: Product }) {
@@ -8,7 +9,7 @@ function ProductDetailsCard({ product }: { product: Product }) {
     const images = product.attributes.images.data
     const imagesArr: any = []
     imagesArr.push(mainImg)
-    images.forEach(image => {
+    images.map(image => {
         imagesArr.push(image.attributes.formats.small.url)
     });
 
@@ -18,9 +19,10 @@ function ProductDetailsCard({ product }: { product: Product }) {
     return (
         < >
 
-            <div className="flex rounded items-stretch   justify-center overflow-hidden shadow-lg  ">
+            <div className="flex rounded overflow-hidden shadow-lg  ">
 
-                <img className="object-contain  " src={mainImg} alt={'main-img'} />
+                <Carousel images={imagesArr}></Carousel>
+
                 <div className="px-6 py-4 flex flex-col justify-between ">
                     <div className="flex flex-col gap-5">
                         <h2 className="font-bold text-m mb-2">{product.attributes.title}</h2>
@@ -30,19 +32,17 @@ function ProductDetailsCard({ product }: { product: Product }) {
 
                     <div className="flex justify-center gap-5" >
                         <div className="flex justify-start items-center w-2/5">
-                            <p className="text-gray-700 text-xl">
+                            <p className="text-gray-700 ">
                                 <span className="font-bold">Precio: </span>   {product.attributes.price} €
                             </p>
 
                         </div>
-                        <div className="flex justify-center gap-10 w-3/5">
+                        <div className="flex justify-center gap-5 w-3/5">
 
-                            <button className="bg-[#1e293b] w-4/5  hover:bg-blue-700 text-white font-bold py-2 rounded">
+                            <button className="bg-[#1e293b] w-4/5    hover:bg-blue-700 text-white font-bold py-2 rounded">
                                 Añadir al carrito
                             </button>
-                            <button className="bg-[#1e293b] w-20 flex text-center justify-center items-center  hover:bg-blue-700 text-white font-bold py-2 rounded">
-                                <img className="w-5" src="/images/favorite.png" alt="favorite-icon" />
-                            </button>
+                            <WhisListIcon productId={product.id} />
                         </div>
 
                     </div>
@@ -50,7 +50,6 @@ function ProductDetailsCard({ product }: { product: Product }) {
 
                 </div>
 
-                <Carousel images={imagesArr}></Carousel>
             </div>
 
         </>

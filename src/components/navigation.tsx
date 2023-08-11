@@ -15,8 +15,8 @@ import {
 
 
 const navigation = [
-    { name: 'Inicio', href: '/', current: false },
-    { name: 'About', href: '/about', current: false }
+    { name: 'Inicio', href: '/', current: false }
+
 ]
 
 export default function Navigation() {
