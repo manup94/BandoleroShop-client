@@ -31,7 +31,6 @@ export default function Wishlist() {
         }
     }
 
-
     const deleteWishlist = async (id) => {
         try {
             await wishlistCtrl.delete(id)
@@ -69,6 +68,6 @@ export default function Wishlist() {
                 ))}
             </div>
             :
-            'Aun no hay productos en tu lista de deseos'
+            'Aun no hay productos en tu lista de deseos.'
     )
 }
