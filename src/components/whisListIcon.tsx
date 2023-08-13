@@ -1,6 +1,6 @@
-import { WishList } from '@/api/wishList'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
+import { WishList } from '@/api/wishList'
 
 const wishlistCtrl = new WishList()
 
@@ -11,21 +11,27 @@ export default function WhisListIcon(props: any) {
     const { user } = useAuth()
 
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await wishlistCtrl.check(user.id, productId)
-                setHasWishlist(response)
-            } catch (error) {
-                setHasWishlist(false)
-                console.log(error);
-            }
-        })()
-    }, [productId])
+        if (user) {
+
+            (async () => {
+                try {
+                    const response = await wishlistCtrl.check(user.id, productId)
+                    setHasWishlist(response)
+                } catch (error) {
+                    setHasWishlist(false)
+                    console.log(error);
+                }
+            })()
+        }
+    }, [productId, user])
 
     const addWishlist = async () => {
-        const response = await wishlistCtrl.add(user.id, productId)
-        setHasWishlist(response)
-        console.log(response);
+        if (user) {
+            const response = await wishlistCtrl.add(user.id, productId)
+            setHasWishlist(response)
+
+        }
+        else { return }
     }
 
     const deleteWishlist = async () => {

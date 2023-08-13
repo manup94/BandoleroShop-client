@@ -71,8 +71,8 @@ export function AuthProvider(props) {
     if (loading) return null
 
     return (
-        <AuthContext.Provider value={data} >
-            {children}
-        </AuthContext.Provider>
+        <AuthContext.Provider value= { data } >
+        { children }
+        < /AuthContext.Provider>
     )
 }

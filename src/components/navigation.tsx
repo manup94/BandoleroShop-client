@@ -1,8 +1,9 @@
 'use client'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
+import { useCart } from '@/hooks/useCart'
 import AuthDialog from './auth/dialog'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 
@@ -21,8 +22,9 @@ const navigation = [
 
 export default function Navigation() {
     const { logout, user } = useAuth()
+    const { total } = useCart()
     const [isReady, setIsReady] = useState(false)
-    const total = 5
+
     const router = useRouter()
 
     useEffect(() => {

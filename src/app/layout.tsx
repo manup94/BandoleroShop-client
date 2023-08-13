@@ -1,7 +1,7 @@
 import './globals.css'
 import Navigation from '../components/navigation'
 
-import { AuthProvider } from '@/contexts'
+import { AuthProvider, CartProvider } from '@/contexts'
 import Footer from '@/components/footer'
 
 
@@ -19,9 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body className='bg-[#f1f1f1]' >
         <AuthProvider>
-          <Navigation />
-          {children}
-          <Footer />
+          <CartProvider>
+            <Navigation />
+            {children}
+            <Footer />
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

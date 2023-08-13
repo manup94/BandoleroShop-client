@@ -1,7 +1,5 @@
 'use client'
 import { Product } from "@/app/types/product";
-import { Products } from "@/api/products"
-import { Categories } from "@/api/categories"
 import ProductsList from "@/components/productsList"
 import { Category } from "./types/category"
 import Link from "next/link"
@@ -9,9 +7,11 @@ import styles from './page.module.css'
 import { useEffect, useState } from "react"
 import BarTrust from "@/components/barTrust"
 import Newsletter from "@/components/newsletter"
+import { Categories } from "@/api/categories";
+import { Products } from "@/api/products";
 
-const productsCtrl = new Products
-const categoriesCtrl = new Categories
+const productsCtrl = new Products()
+const categoriesCtrl = new Categories()
 
 function HomePage() {
 

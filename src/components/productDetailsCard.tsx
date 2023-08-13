@@ -1,6 +1,7 @@
 import { Product } from "@/app/types/product"
 import Carousel from "./carousel"
 import WhisListIcon from "./whisListIcon"
+import AddCartIcon from "./addCartIcon"
 
 
 function ProductDetailsCard({ product }: { product: Product }) {
@@ -39,9 +40,7 @@ function ProductDetailsCard({ product }: { product: Product }) {
                         </div>
                         <div className="flex justify-center gap-5 w-3/5">
 
-                            <button className="bg-[#1e293b] w-4/5    hover:bg-blue-700 text-white font-bold py-2 rounded">
-                                Añadir al carrito
-                            </button>
+                            <AddCartIcon productId={product.id} />
                             <WhisListIcon productId={product.id} />
                         </div>
 

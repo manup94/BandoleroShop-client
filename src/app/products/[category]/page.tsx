@@ -1,8 +1,8 @@
 'use client'
 import ProductsList from "@/components/productsList"
-import { Products } from "@/api/products";
 import { useState, useEffect } from "react";
 import Pagination from "@/components/pagination";
+import { Products } from "@/api/products";
 
 const productsCtrl = new Products()
 

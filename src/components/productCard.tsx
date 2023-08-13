@@ -1,6 +1,9 @@
 import { Product } from "@/app/types/product"
 import Link from "next/link"
 import WhisListIcon from "./whisListIcon"
+import { useState } from "react"
+import { useCart } from "@/hooks/useCart"
+import AddCartIcon from "./addCartIcon"
 
 function ProductCard({ product }: { product: Product }) {
 
@@ -20,9 +23,7 @@ function ProductCard({ product }: { product: Product }) {
                     </div>
                 </Link>
                 <div className="px-6 flex gap-5 py-4">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Add to Cart
-                    </button>
+                    <AddCartIcon productId={product.id} />
                     <WhisListIcon productId={product.id} />
                 </div>
             </div>
