@@ -23,7 +23,7 @@ export default function WhisListIcon(props: any) {
                 }
             })()
         }
-    }, [productId, user])
+    }, [productId])
 
     const addWishlist = async () => {
         if (user) {
@@ -61,7 +61,7 @@ export default function WhisListIcon(props: any) {
                 addWishlist()
             }
         }}
-            className='w-10'
+            className='w-10 hover:cursor-pointer'
             src={`/images/${icon}.png`} alt={`${icon}-icon`} />
 
     )

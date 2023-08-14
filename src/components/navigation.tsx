@@ -50,7 +50,6 @@ export default function Navigation() {
         }
     }
 
-
     return (
         <nav className="navbar text-white p-5 flex justify-between bg-[#1e293b]">
             <ul className='flex space-x-2 '>
