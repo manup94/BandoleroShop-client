@@ -16,7 +16,7 @@ function ProfilePage() {
 
     return (
 
-        <section className="justify-center">
+        <section className=" justify-center">
             <Info />
             <Tabs />
 
