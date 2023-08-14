@@ -1,4 +1,5 @@
 import { useCart } from "@/hooks/useCart";
+import Link from "next/link";
 import { Dropdown } from "semantic-ui-react";
 
 export default function Basket(props) {
@@ -21,13 +22,18 @@ export default function Basket(props) {
             {products?.map((product, index) => (
                 <div key={index} className="flex items-center justify-between p-4 bg-white shadow-md rounded">
                     <div className="flex  space-x-4">
-                        <img src={product?.attributes.images.data[0].attributes?.url} alt='product-img' className="w-16 h-16 object-contain" />
-                        <div className="flex-col justify-start text-left">
-                            <h3 className=" text-lg font-semibold">{product?.attributes.title}</h3>
-                            <p className="text-gray-600 m-2">{product?.attributes.price}€ {product.attributes.discount && <span>- {product.attributes.discount}% = <span className="text-red-600"> {product?.attributes.price - product?.attributes.price * product.attributes.discount / 100}€</span></span>}</p>
-                            <p className="text-gray-600 m-2">{product?.attributes.category.data.attributes?.title}</p>
+                        <Link href={`/${product?.attributes.slug}`}>
+                            <div className="flex">
+                                <img src={product?.attributes.images.data[0].attributes?.url} alt='product-img' className="w-16 h-16 mr-5 object-contain" />
+                                <div className="flex-col justify-start text-left">
+                                    <h3 className=" text-lg font-semibold">{product?.attributes.title}</h3>
+                                    <p className="text-gray-600 m-2">{product?.attributes.category.data.attributes?.title}</p>
+                                    <p className="text-gray-600 m-2">{product?.attributes.price}€ {product.attributes.discount && <span>- {product.attributes.discount}% = <span className="text-red-600"> {product?.attributes.price - product?.attributes.price * product.attributes.discount / 100}€</span></span>}</p>
 
-                        </div>
+                                </div>
+
+                            </div>
+                        </Link>
 
                         <div>
                             <Dropdown
