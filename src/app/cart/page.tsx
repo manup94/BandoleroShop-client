@@ -2,6 +2,7 @@
 import { Products } from "@/api/products";
 import HeaderCart from "@/components/cart/headerCart";
 import StepOne from "@/components/cart/stepOne";
+import StepTwo from "@/components/cart/stepTwo";
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -40,7 +41,7 @@ export default function CartPage() {
         <div >
             <HeaderCart currentStep={currentStep} />
             {currentStep <= 1 && <StepOne products={products} />}
-            {currentStep == 2 && <p >Step 2</p>}
+            {currentStep == 2 && <StepTwo products={products} />}
             {currentStep == 3 && <p >Step 3</p>}
         </div >
     )
