@@ -23,7 +23,10 @@ export default function WhisListIcon(props: any) {
                 }
             })()
         }
-    }, [productId])
+        if (!user) {
+            setHasWishlist(false)
+        }
+    }, [productId, user])
 
     const addWishlist = async () => {
         if (user) {

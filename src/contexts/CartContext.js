@@ -2,6 +2,7 @@
 import { useState, useEffect, createContext } from "react";
 import { Cart } from "@/api/cart";
 
+
 const cartCtrl = new Cart()
 
 export const CartContext = createContext()
@@ -11,7 +12,6 @@ export function CartProvider(props) {
     const [cart, setCart] = useState(null)
     const [total, setTotal] = useState(cartCtrl.count())
 
-    console.log(total);
     useEffect(() => {
         const response = cartCtrl.getAll()
         setCart(response)
