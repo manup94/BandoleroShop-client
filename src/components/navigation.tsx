@@ -42,11 +42,11 @@ export default function Navigation() {
     const goToCart = () => {
         if (!user) {
 
-            router.push('/about')
+            return
         }
         else {
 
-            router.push('/cart')
+            router.push('/cart?step=1')
         }
     }
 

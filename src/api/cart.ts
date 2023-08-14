@@ -28,6 +28,15 @@ export class Cart {
 
     }
 
+    changeQuantity(productId, quantity) {
+        const products = this.getAll()
+        const objIndex = products.findIndex((product) => product.id === productId)
+
+        products[objIndex].quantity = quantity
+
+        localStorage.setItem(ENV.CART, JSON.stringify(products))
+    }
+
     count() {
         const response = this.getAll()
         let count = 0
@@ -36,5 +45,12 @@ export class Cart {
             count += item.quantity
         });
         return count
+    }
+
+    delete(productId) {
+        const products = this.getAll()
+        const updateProducts = products.filter((product) => product.id !== productId)
+
+        localStorage.setItem(ENV.CART, JSON.stringify(updateProducts))
     }
 }

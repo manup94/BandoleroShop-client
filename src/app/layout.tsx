@@ -1,5 +1,6 @@
 import './globals.css'
 import Navigation from '../components/navigation'
+import 'semantic-ui-css/semantic.min.css'
 
 import { AuthProvider, CartProvider } from '@/contexts'
 import Footer from '@/components/footer'
