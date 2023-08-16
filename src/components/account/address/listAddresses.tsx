@@ -29,7 +29,7 @@ function ListAddresses(props) {
 
     return (
 
-        <div className="d-block">
+        <div className="flex  flex-col w-1/2">
             {addresses && addresses.length > 0 ? (
                 addresses.map((address: any) => (
                     <Address key={address.id} onReload={onReload} addressId={address.id} address={address.attributes} />

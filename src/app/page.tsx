@@ -63,7 +63,7 @@ function HomePage() {
         <div className=" p-5 mt-5 ">
           <ul className="grid gap-5 grid-cols-2 sm:grid-cols-5 md:grid-cols-5 justify-center">
             {categories?.map((category: Category) => (
-              <li key={category.attributes.slug} className="hover:underline flex flex-col items-center">
+              <li key={category.attributes.slug} className="hover:underline  flex flex-col items-center">
                 <Link className="flex flex-col align-middle justify-center" href={`/products/${category.attributes.slug}`}>
                   <img className="w-10 m-auto " src={category.attributes.icon.data.attributes.url} alt={category.attributes.title} />
                   <p className="p-5 ">{category.attributes.title}</p>
@@ -84,6 +84,7 @@ function HomePage() {
 
         </div>
       </div>
+
       <Newsletter></Newsletter>
       <BarTrust></BarTrust>
     </>

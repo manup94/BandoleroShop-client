@@ -44,7 +44,7 @@ export default function Wishlist() {
 
     return (
         wishList && wishList.length > 0 ?
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col w-1/2 mx-auto space-y-4">
                 {wishList?.map((product, index) => (
                     <div key={index} className="flex items-center justify-between p-4 bg-white shadow-md rounded">
                         <Link href={`/${product?.attributes.product.data.attributes.slug}`}>

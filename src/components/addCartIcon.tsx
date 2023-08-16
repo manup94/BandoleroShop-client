@@ -6,7 +6,7 @@ import BasicModal from "./basicModal"
 export default function AddCartIcon(props: any) {
     const { user } = useAuth()
     const { productId } = props
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(null)
     const { addCart } = useCart()
 
     const addCartWrapper = () => {

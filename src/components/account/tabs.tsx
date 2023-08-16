@@ -8,6 +8,7 @@ import ChangePasswordForm from "./settings/changePasswordForm";
 import AddAddress from "./address/addAddress";
 import ListAddresses from "./address/listAddresses";
 import Wishlist from "./wishlist/wishlist";
+import Orders from "./orders/orders";
 
 function Tabs() {
 
@@ -30,7 +31,12 @@ function Tabs() {
     }
 
     const tabData = [
-        { title: 'Mis pedidos', content: 'Contenido de la pestaña 1' },
+        {
+            title: 'Mis pedidos', content:
+                <div>
+                    <Orders />
+                </div>
+        },
         {
             title: 'Lista de deseos', content:
                 <div className="p-10">

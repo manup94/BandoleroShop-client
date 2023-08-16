@@ -12,9 +12,6 @@ export default function Basket(props) {
         return { key: number, text: String(number), value: number }
     })
 
-
-
-
     return (
         <div>
             <h2 className="mb-5">Cesta</h2>

@@ -12,7 +12,7 @@ function ProductCard({ product }: { product: Product }) {
     return (
         < >
 
-            <div className="max-w-sm rounded overflow-hidden shadow-lg h-[30rem] ">
+            <div className="max-w-sm m-auto rounded overflow-hidden shadow-lg h-[30rem] ">
                 <Link href={`/${product.attributes.slug}`}>
                     <img className="w-full object-contain h-[16rem] " src={mainImg} alt={'img'} />
                     <div className="px-6 py-4 ">

@@ -36,7 +36,7 @@ function Address(props: any) {
 
 
     return (
-        <div className=' w-full justify-around ' >
+        <div className=' w-full mx-auto justify-around ' >
 
             <div >
                 <div >

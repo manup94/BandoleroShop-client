@@ -11,8 +11,11 @@ export const ENV = {
         CATEGORY: 'categories',
         ADDRESS: 'addresses',
         PRODUCTS: 'products',
-        WISHLIST: 'wishlists'
+        WISHLIST: 'wishlists',
+        PAYMENT_ORDER: 'payment-order',
+        ORDER: 'orders'
     },
     TOKEN: 'token',
-    CART: 'cart'
+    CART: 'cart',
+    STRIPE_TOKEN: 'pk_test_51NEyyIIYMW6vfRer27ZHBgAsaItkKJ8HdwhQTgnwMEQxXBx5Nys8DKIknApk4I8qZFqBR8uLirhFuJ6xQq1rovvG00PnX7RUUO'
 }

@@ -36,7 +36,6 @@ export default function Navigation() {
 
         const value = event.target.value;
         router.replace(`/search?s=${value}`)
-        console.log(value);
     }
 
     const goToCart = () => {

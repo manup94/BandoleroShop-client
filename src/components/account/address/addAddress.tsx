@@ -14,7 +14,7 @@ function AddAddress(props) {
     }
 
     return (
-        <div className=' d-block'>
+        <div className=' w-1/2 mx-auto'>
 
             <BasicModal show={show} onOpenClose={onOpenClose} title='Crear nueva dirección' >
 
