@@ -44,10 +44,10 @@ export default function Wishlist() {
 
     return (
         wishList && wishList.length > 0 ?
-            <div className="flex flex-col w-1/2 mx-auto space-y-4">
+            <div className="flex flex-col mx-auto space-y-4">
                 {wishList?.map((product, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 bg-white shadow-md rounded">
-                        <Link href={`/${product?.attributes.product.data.attributes.slug}`}>
+                    <div key={index} className="flex flex-col justify-between sm:flex-row items-center p-4 bg-white shadow-md rounded">
+                        <Link href={`/${product?.attributes.product.data.attributes.slug}`} className="text-black">
                             <div className="flex items-center space-x-4">
                                 <img src={product?.attributes.product.data.attributes.images.data[0].attributes?.url} alt='product-img' className="w-16 h-16 object-contain" />
                                 <div>
@@ -58,7 +58,7 @@ export default function Wishlist() {
                         </Link>
                         <button
                             onClick={() => deleteWishlist(product.id)}
-                            className="flex items-center justify-center w-8 h-8 text-red-600 hover:text-red-800"
+                            className="flex items-center justify-center w-8 h-8 text-red-600 hover:text-red-800 mt-2 sm:mt-0"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path

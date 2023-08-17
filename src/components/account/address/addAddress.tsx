@@ -4,17 +4,17 @@ import { Button } from 'semantic-ui-react'
 import AddressForm from './addressForm'
 
 
-function AddAddress(props) {
+function AddAddress(props: any) {
 
     const { onReload } = props
     const [show, setShow] = useState(false)
 
-    const onOpenClose = (value: boolean) => {
+    const onOpenClose = (value: any) => {
         setShow(value)
     }
 
     return (
-        <div className=' w-1/2 mx-auto'>
+        <div className=' mx-auto'>
 
             <BasicModal show={show} onOpenClose={onOpenClose} title='Crear nueva dirección' >
 

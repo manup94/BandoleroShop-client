@@ -7,8 +7,8 @@ export default function Payment() {
     return (
         <div>
             <h2 className='mb-3'>Métodos de pago</h2>
-            <div className='p-10 rounded-md border-black border-2'>
-                <CardElement options={cardStyle} />
+            <div className='p-10  rounded-md border-black border-2'>
+                <CardElement className='w-50' options={cardStyle} />
             </div>
         </div>
     )

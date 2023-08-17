@@ -12,7 +12,7 @@ export default function StepThree() {
 
             <img className="w-20 mx-auto" src="/images/checked.png" alt="sucess-icon" />
             <h2>!Compra exitosa!</h2>
-            <button onClick={() => router.replace('/profile')} className="bg-[#1e293b]   p-2 w-60 mx-auto    hover:bg-blue-800 text-white font-bold py-2 rounded">
+            <button onClick={() => router.replace('/profile')} className="bg-[#1e293b]   p-2  mx-auto    hover:bg-blue-800 text-white font-bold py-2 rounded">
                 Ver pedido
             </button>
 

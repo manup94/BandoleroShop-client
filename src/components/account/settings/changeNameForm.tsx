@@ -32,9 +32,9 @@ function ChangeNameForm() {
 
     return (
         <>
-            <form onSubmit={onSubmit} className="flex mb-5 w-full" >
-                <fieldset className="mb-[15px] w-full flex items-center gap-5">
-                    <label className="text-violet11 w-1/5 font-bold   text-left text-[15px]" htmlFor="name">
+            <form onSubmit={onSubmit}  >
+                <fieldset className="mb-[15px] flex items-center gap-5 p-0  ">
+                    <label className="text-violet11 w-1/5 font-bold text-left  text-[15px]" htmlFor="name">
                         Nombre y apellidos
                     </label>
                     <input

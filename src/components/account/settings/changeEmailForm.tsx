@@ -49,9 +49,9 @@ function ChangeEmailForm() {
     return (
 
 
-        <form onSubmit={onSubmit} className="flex flex-col w-full items-center gap-5 ">
+        <form onSubmit={onSubmit} className="flex flex-col items-center gap-5 ">
             <div className="flex w-full  ">
-                <label className="text-violet11 font-bold text-[15px] w-1/5 text-left mr-5" htmlFor="email">
+                <label className="text-violet11 font-bold text-[15px] w-1/5  mr-5" htmlFor="email">
                     Email
                 </label>
                 <input

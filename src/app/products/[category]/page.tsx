@@ -35,7 +35,7 @@ export default function CategoryPage(props: any) {
 
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto p-10">
             <h2 className="text-2xl text-left m-5">{`Categoria: ${params.category}`}</h2>
             <hr className="m-7" />
             {

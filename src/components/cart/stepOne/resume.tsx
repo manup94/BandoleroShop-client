@@ -53,8 +53,11 @@ export default function Resume(props: any) {
                         <span>{totals.price.toFixed(2)}€</span>
                     </div>
                 </div>
-                <button onClick={goToStepTwo} className="bg-[#1e293b]   p-2    hover:bg-blue-800 text-white font-bold py-2 rounded">Proceder con el pago</button>
-                <Link className="bg-[#1e293b]   hover:bg-blue-800 p-2 text-white font-bold py-2 rounded" href={'/'}>Continuar comprando</Link>
+                <div className="flex gap-1.5">
+                    <button onClick={goToStepTwo} className="bg-[#1e293b] p-4 text-center mx-auto  hover:bg-blue-800 text-white font-bold py-2 rounded">Proceder con el pago</button>
+                    <Link className="bg-[#1e293b] hover:bg-blue-800 p-4 text-white font-bold text-center py-2 rounded" href={'/'}>Continuar comprando</Link>
+
+                </div>
             </div>
         </div>
     )

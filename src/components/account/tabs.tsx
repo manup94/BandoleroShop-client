@@ -33,7 +33,7 @@ function Tabs() {
     const tabData = [
         {
             title: 'Mis pedidos', content:
-                <div>
+                <div className="p-10">
                     <Orders />
                 </div>
         },
@@ -47,13 +47,13 @@ function Tabs() {
 
         },
         {
-            title: 'Direcciones', content: <div className="p-10 flex w-full justify-between   ">
+            title: 'Direcciones', content: <div className="p-10 flex   ">
                 <ListAddresses reload={reload} onReload={onReload} />
                 <AddAddress onReload={onReload} />
             </div>
         },
         {
-            title: 'Ajustes', content: <div className="p-10  ">
+            title: 'Ajustes', content: <div className="p-10    ">
                 <ChangeNameForm />
                 <hr className="mb-7 mt-7" />
                 <ChangeEmailForm />
@@ -88,12 +88,12 @@ function Tabs() {
 
             <div className="p-4">
                 {tabData.map((tab, index) => (
-                    <div key={index} className={activeTab === index ? '' : 'hidden'}>
+                    <div key={index} className={activeTab === index ? '' : 'hidden'}  >
                         {tab.content}
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
 
     )
 }

@@ -15,10 +15,6 @@ import {
 } from '@chakra-ui/react'
 
 
-const navigation = [
-    { name: 'Inicio', href: '/', current: false }
-
-]
 
 export default function Navigation() {
     const { logout, user } = useAuth()
@@ -29,93 +25,75 @@ export default function Navigation() {
 
     useEffect(() => {
         setIsReady(true)
-
     }, [])
 
     const onSearch = (event: any) => {
-
         const value = event.target.value;
         router.replace(`/search?s=${value}`)
     }
 
     const goToCart = () => {
         if (!user) {
-
             return
-        }
-        else {
-
+        } else {
             router.push('/cart?step=1')
         }
     }
 
     return (
-        <nav className="navbar text-white p-5 flex  justify-between bg-[#1e293b]">
-            <ul className='flex space-x-2 '>
-                {
-                    navigation.map(elm => {
-                        return <li className='hover:underline' key={navigation.indexOf(elm)}>
-                            <Link href={elm.href}>{elm.name}</Link>
-                        </li>
-                    })
-                }
-            </ul>
-            <ul className='flex space-x-5'>
-                <li className='mr-10'>
-                    <form className="flex items-center">
-                        <input
-                            onSubmit={(event) => event.preventDefault()}
-                            id='search-product'
-                            onChange={onSearch}
-                            type="text"
-                            placeholder="Buscar..."
-                            className="bg-white text-black outline-none  py-1 px-2"
-                        />
-                        <img className='w-8   bg-purple-500 text-white p-1 ' src="/images/search.png" alt="search-bar" />
-                    </form>
-                </li>
-                <li className='hover:cursor-pointer'>
+        <nav className="navbar text-white p-5 md:p-5 flex flex-wrap  md:justify-between items-center bg-[#1e293b]">
+            <div className='w-full md:w-1/3   text-center mb-3 md:mb-0'>
+                <Link href={'/'}>
+                    <img className='inline' src="/images/logo.png" alt="logo-icon" />
+                </Link>
+            </div>
+            <div className='w-full md:w-1/3 flex justify-center mb-3 md:mb-0'>
+                <form className="flex w-full md:w-auto">
+                    <input
+                        onSubmit={(event) => event.preventDefault()}
+                        id='search-product'
+                        onChange={onSearch}
+                        type="text"
+                        placeholder="Buscar..."
+                        className="bg-white h-10 w-full md:w-80 rounded text-black outline-none py-1 px-2"
+                    />
+                    <img className='w-10 h-10 text-white p-1' src="/images/search.png" alt="search-bar" />
+                </form>
+            </div>
+            <div className='w-full md:w-1/3 flex justify-center  md:justify-center'>
+                <div className='hover:cursor-pointer'>
                     {user && isReady ?
                         <Menu>
-                            <MenuButton >
+                            <MenuButton className='text-base mr-10 md:text-xl'>
                                 Hola {user?.username}
                             </MenuButton>
-                            <MenuList className='"p-5 rounded-md shadow menu dropdown-content z-[2] rounded-box w-52 absolute top-full left-0 mt-1 invisible opacity-0 transition-all duration-300 bg-gradient-to-r from-[#1e293b] to-purple-500"' >
-                                <MenuItem  >
+                            <MenuList className='menu dropdown-content z-[2] rounded-box w-52 absolute top-full left-0 mt-1 invisible opacity-0 transition-all duration-300 bg-gradient-to-r from-[#1e293b] to-purple-500'>
+                                <MenuItem>
                                     <Link href={'/profile'} className='m-3'>Mi perfil</Link>
                                 </MenuItem>
-                                <MenuItem >
+                                <MenuItem>
                                     <button onClick={logout} className='m-3'>Cerrar sesión</button>
                                 </MenuItem>
                             </MenuList>
                         </Menu>
                         :
                         <AuthDialog />}
-
-                </li>
-
+                </div>
                 {
-                    user && isReady ?
-                        <li>
-
-
-                            <button className='flex' onClick={goToCart}>
-                                {total > 0 && <span >{total}</span>}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M17.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"></path>
-                                    <path d="M6 8v11a1 1 0 0 0 1.806 .591l3.694 -5.091v.055"></path>
-                                    <path d="M6 8h15l-3.5 7l-7.1 -.747a4 4 0 0 1 -3.296 -2.493l-2.853 -7.13a1 1 0 0 0 -.928 -.63h-1.323"></path>
-                                </svg>
-                            </button>
-
-                        </li>
-                        :
-                        ' '
-
+                    user && isReady &&
+                    <div className='ml-3 md:ml-0'>
+                        <button className='flex items-center' onClick={goToCart}>
+                            {total > 0 && <span className='mr-1 md:mr-2'>{total}</span>}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M17.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"></path>
+                                <path d="M6 8v11a1 1 0 0 0 1.806 .591l3.694 -5.091v.055"></path>
+                                <path d="M6 8h15l-3.5 7l-7.1 -.747a4 4 0 0 1 -3.296 -2.493l-2.853 -7.13a1 1 0 0 0 -.928 -.63h-1.323"></path>
+                            </svg>
+                        </button>
+                    </div>
                 }
-
-            </ul>
-        </nav >
+            </div>
+        </nav>
     )
 }

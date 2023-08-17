@@ -16,14 +16,14 @@ export default function StepTwo(props: any) {
     return (
         <Elements stripe={stripeInit}>
 
-            <div className="flex justify-center p-10 ">
+            <div className="md:flex justify-center p-10 ">
                 <div className="w-full pr-5">
                     <Addresses addressSelected={addressSelected} setAddressSelected={setAddressSelected} />
                     <hr className="h-14" />
                     {addressSelected && <Payment />}
 
                 </div>
-                <div className="w-full pl-5">
+                <div className="w-full pt-3">
                     <Resume addressSelected={addressSelected} products={products} />
                 </div>
             </div>

@@ -6,13 +6,9 @@ export default function HeaderCart(props) {
     const { currentStep } = props
 
     return (
-        <div className="bg-black position-fixed justify-center items-center text-white  p-5  flex align-middle z-5">
-            <div className="w-1/6">
-                <Link rel="stylesheet" href="/" >
-                    <img className="w-30" src="/images/logo.png" alt="logo" />
-                </Link>
-            </div>
-            <div className="w-4/6 mx-auto  flex justify-center">
+        <div className="bg-black  md:flex hidden  justify-center items-center text-white  p-5 align-middle z-5">
+
+            <div className="mx-auto  flex justify-center">
                 <div className="flex justify-center items-center" key={1}>
                     <span className={`flex  mr-5 border-4  justify-center align-middle items-center ${currentStep >= 1 ? 'border-[#00f700]' : 'border-[#374150]'}  rounded-full h-9 w-9`} >
                         <img className={`w-5  ${currentStep >= 2 ? '' : 'hidden'}`} src="/images/check.png" alt="check-logo" />
