@@ -3,9 +3,11 @@
     height: 350px;
     display: flex;
     align-items: center;
+
 }
 
 .banner {
+
     width: 50%;
     height: 350px;
     mask-image: linear-gradient(90deg, #000000 84%, rgba(0, 0, 0, 0) 100%);

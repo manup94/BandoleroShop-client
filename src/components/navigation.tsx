@@ -60,28 +60,10 @@ export default function Navigation() {
                     <img className='w-10 h-10 text-white p-1' src="/images/search.png" alt="search-bar" />
                 </form>
             </div>
-            <div className='w-full md:w-1/3 flex justify-center  md:justify-center'>
-                <div className='hover:cursor-pointer'>
-                    {user && isReady ?
-                        <Menu>
-                            <MenuButton className='text-base mr-10 md:text-xl'>
-                                Hola {user?.username}
-                            </MenuButton>
-                            <MenuList className='menu dropdown-content z-[2] rounded-box w-52 absolute top-full left-0 mt-1 invisible opacity-0 transition-all duration-300 bg-gradient-to-r from-[#1e293b] to-purple-500'>
-                                <MenuItem>
-                                    <Link href={'/profile'} className='m-3'>Mi perfil</Link>
-                                </MenuItem>
-                                <MenuItem>
-                                    <button onClick={logout} className='m-3'>Cerrar sesión</button>
-                                </MenuItem>
-                            </MenuList>
-                        </Menu>
-                        :
-                        <AuthDialog />}
-                </div>
+            <div className='w-full md:w-1/3 flex justify-between   md:justify-center'>
                 {
                     user && isReady &&
-                    <div className='ml-3 md:ml-0'>
+                    <div className='ml-3  md:mr-10'>
                         <button className='flex items-center' onClick={goToCart}>
                             {total > 0 && <span className='mr-1 md:mr-2'>{total}</span>}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -93,6 +75,25 @@ export default function Navigation() {
                         </button>
                     </div>
                 }
+                <div className=' hover:cursor-pointer'>
+                    {user && isReady ?
+                        <Menu >
+                            <MenuButton className='text-base mr-10 md:text-xl'>
+                                Hola {user?.username}
+                            </MenuButton>
+                            <MenuList className='menu dropdown-content z-[2] rounded-box w-32 absolute top-full left-0 mt-1 invisible opacity-0 transition-all duration-200 bg-white'>
+                                <MenuItem>
+                                    <Link href={'/profile'} className='m-3 text-black font-bold'>Mi perfil</Link>
+                                </MenuItem>
+                                <hr />
+                                <MenuItem>
+                                    <button onClick={logout} className='m-3 text-black font-bold'>Cerrar sesión</button>
+                                </MenuItem>
+                            </MenuList>
+                        </Menu>
+                        :
+                        <AuthDialog />}
+                </div>
             </div>
         </nav>
     )

@@ -18,7 +18,7 @@ export class User {
 
     }
 
-    async updateMe(userId, data) {
+    async updateMe(userId: number, data: any) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS}/${userId}`
 

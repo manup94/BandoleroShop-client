@@ -52,18 +52,18 @@ function AddressForm(props: any) {
                     defaultValue={address?.title}
                 />
             </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
+            <fieldset className="mb-[15px] md:flex items-center gap-5">
                 <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="name">
                     Nombre completo *
                 </label>
                 <input
                     {...register('name')}
-                    className="text-violet11 shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                    className="text-violet11 shadow-violet7   focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="name"
                     placeholder='Introduce un nombre'
                     defaultValue={address?.name}
                 />
-                <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="address">
+                <label className="text-violet11 md:mt-5  w-[90px] text-right text-[15px]" htmlFor="address">
                     Direccion *
                 </label>
                 <input
@@ -74,7 +74,7 @@ function AddressForm(props: any) {
                     defaultValue={address?.address}
                 />
             </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
+            <fieldset className="mb-[15px]  md:flex items-center gap-5">
                 <label className="text-violet11  w-[90px] text-right text-[15px]" htmlFor="state">
                     Pais *
                 </label>
@@ -96,7 +96,7 @@ function AddressForm(props: any) {
                     defaultValue={address?.city}
                 />
             </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
+            <fieldset className="mb-[15px]  md:flex items-center gap-5">
                 <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="postal_code">
                     Codigo postal *
                 </label>

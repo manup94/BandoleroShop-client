@@ -2,7 +2,7 @@ import { authFetch } from "@/utils/authFetch";
 import { ENV } from "@/utils/constants";
 
 export class Address {
-    async create(data, userId) {
+    async create(data: any, userId: number) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}`
             const params = {
@@ -30,7 +30,7 @@ export class Address {
         }
     }
 
-    async getAll(userId) {
+    async getAll(userId: number) {
         try {
             const filters = `filters[user][id][$eq]=${userId}`
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}?${filters}`
@@ -47,7 +47,7 @@ export class Address {
         }
     }
 
-    async update(data, addressId) {
+    async update(data: any, addressId: number) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`
             const params = {
@@ -70,7 +70,7 @@ export class Address {
         }
     }
 
-    async delete(addressId) {
+    async delete(addressId: number) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`
             const params = {

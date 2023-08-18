@@ -2,7 +2,7 @@ import { ENV } from "@/utils/constants"
 import jwtDecode from 'jwt-decode'
 
 export class Token {
-    setToken(token) {
+    setToken(token: any) {
         localStorage.setItem(`${ENV.TOKEN}`, token)
     }
 
@@ -14,7 +14,7 @@ export class Token {
         localStorage.removeItem(ENV.TOKEN)
     }
 
-    hasExpired(token) {
+    hasExpired(token: any) {
         const tokenDecode = jwtDecode(token)
         const expireDate = tokenDecode.exp * 1000
         const currentDate = new Date().getTime()

@@ -1,8 +1,9 @@
+import { Product } from "@/app/types/product";
 import { authFetch } from "@/utils/authFetch";
 import { ENV } from "@/utils/constants";
 
 export class Cart {
-    add(productId: any) {
+    add(productId: number) {
         const products = this.getAll()
         const objIndex = products.findIndex((product: any) => product.id === productId)
 
@@ -28,9 +29,9 @@ export class Cart {
 
     }
 
-    changeQuantity(productId, quantity) {
+    changeQuantity(productId: number, quantity: number) {
         const products = this.getAll()
-        const objIndex = products.findIndex((product) => product.id === productId)
+        const objIndex = products.findIndex((product: any) => product.id === productId)
 
         products[objIndex].quantity = quantity
 
@@ -41,15 +42,15 @@ export class Cart {
         const response = this.getAll()
         let count = 0
 
-        response.forEach(item => {
+        response.forEach((item: any) => {
             count += item.quantity
         });
         return count
     }
 
-    delete(productId) {
+    delete(productId: number) {
         const products = this.getAll()
-        const updateProducts = products.filter((product) => product.id !== productId)
+        const updateProducts = products.filter((product: Product) => product.id !== productId)
 
         localStorage.setItem(ENV.CART, JSON.stringify(updateProducts))
     }
@@ -58,7 +59,7 @@ export class Cart {
         localStorage.removeItem(ENV.CART)
     }
 
-    async paymentCard(token, products, idUser, address) {
+    async paymentCard(token: any, products: Product, idUser: number, address: any) {
         try {
 
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PAYMENT_ORDER}`

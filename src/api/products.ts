@@ -93,7 +93,7 @@ export class Products {
 
     }
 
-    async getProductById(productId) {
+    async getProductById(productId: number) {
         try {
             const populate = `populate[0]=images&populate[1]=category`
 

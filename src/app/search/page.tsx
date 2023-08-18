@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const productsCtrl = new Products()
 
 
-export default function SearchPage(props) {
+export default function SearchPage(props: any) {
 
     const [products, setProducts] = useState(null)
     const [pagination, setPagination] = useState<object | null>(null)
