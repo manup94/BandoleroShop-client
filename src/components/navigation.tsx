@@ -21,11 +21,20 @@ export default function Navigation() {
     const { total } = useCart()
     const [isReady, setIsReady] = useState(false)
 
+
     const router = useRouter()
+    const { deleteAllItems } = useCart()
 
     useEffect(() => {
         setIsReady(true)
+
     }, [])
+
+    const closeSession = () => {
+        logout()
+
+        deleteAllItems()
+    }
 
     const onSearch = (event: any) => {
         const value = event.target.value;
@@ -87,7 +96,7 @@ export default function Navigation() {
                                 </MenuItem>
                                 <hr />
                                 <MenuItem>
-                                    <button onClick={logout} className='m-3 text-black font-bold'>Cerrar sesión</button>
+                                    <button onClick={closeSession} className='m-3 text-black font-bold'>Cerrar sesión</button>
                                 </MenuItem>
                             </MenuList>
                         </Menu>

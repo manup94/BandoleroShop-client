@@ -5,6 +5,7 @@ import { User } from "@/api/user";
 
 const tokenCtrl = new Token()
 const userCtrl = new User()
+
 export const AuthContext = createContext()
 
 export function AuthProvider(props) {
@@ -71,8 +72,8 @@ export function AuthProvider(props) {
     if (loading) return null
 
     return (
-        <AuthContext.Provider value= { data } >
-        { children }
-        < /AuthContext.Provider>
+        <AuthContext.Provider value={data} >
+            {children}
+        </AuthContext.Provider>
     )
 }

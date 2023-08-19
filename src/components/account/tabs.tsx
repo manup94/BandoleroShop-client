@@ -9,9 +9,13 @@ import AddAddress from "./address/addAddress";
 import ListAddresses from "./address/listAddresses";
 import Wishlist from "./wishlist/wishlist";
 import Orders from "./orders/orders";
+import { useCart } from "@/hooks/useCart";
+
+
 
 function Tabs() {
 
+    const { deleteAllItems } = useCart()
     const router = useRouter()
     const { logout } = useAuth()
     const [activeTab, setActiveTab] = useState(0);
@@ -26,6 +30,7 @@ function Tabs() {
 
     const onLogout = () => {
         logout()
+        deleteAllItems()
         router.push('/')
 
     }

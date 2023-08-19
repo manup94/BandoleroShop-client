@@ -48,6 +48,7 @@ export class Cart {
         return count
     }
 
+
     delete(productId: number) {
         const products = this.getAll()
         const updateProducts = products.filter((product: Product) => product.id !== productId)
