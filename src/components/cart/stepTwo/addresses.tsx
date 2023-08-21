@@ -1,6 +1,8 @@
 import { Address } from "@/api/address"
 import { useAuth } from "@/hooks/useAuth"
 import { useState, useEffect } from "react"
+import { Address as AddressType } from "@/app/types/address"
+
 
 const addressCtrl = new Address()
 
@@ -24,7 +26,7 @@ export default function Addresses(props: any) {
     return (
         <div>
             <h2>Dirección</h2>
-            {addresses?.map((address) => {
+            {addresses?.map((address: AddressType) => {
                 return (
                     <div
                         onClick={() => setAddressSelected(address)}

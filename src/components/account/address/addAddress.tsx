@@ -1,6 +1,5 @@
 import BasicModal from '@/components/basicModal'
 import { useState } from 'react'
-import { Button } from 'semantic-ui-react'
 import AddressForm from './addressForm'
 
 

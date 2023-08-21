@@ -1,6 +1,7 @@
 import { ENV } from "@/utils/constants"
 import jwtDecode from 'jwt-decode'
 
+
 export class Token {
     setToken(token: any) {
         localStorage.setItem(`${ENV.TOKEN}`, token)

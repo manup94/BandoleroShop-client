@@ -60,8 +60,6 @@ function HomePage() {
         <h1 className="text-white text-xl">"Desde el sur para el mundo"</h1>
       </header>
 
-
-
       <div className=" container mx-auto ">
         <div className=" p-5 mt-5 ">
           <ul className="grid gap-5 grid-cols-2 sm:grid-cols-5 md:grid-cols-5 justify-center">
@@ -88,8 +86,8 @@ function HomePage() {
         </div>
       </div>
 
-      <Newsletter></Newsletter>
-      <BarTrust></BarTrust>
+      <Newsletter />
+      <BarTrust />
     </>
 
 

@@ -35,7 +35,6 @@ export default function SearchPage(props: any) {
     }, [searchParams.s, actualPage])
 
 
-
     return (
         <div className="container mx-auto p-10">
             {products?.length !== 0 && searchParams.s !== '' ? (

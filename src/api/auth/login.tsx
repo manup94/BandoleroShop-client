@@ -2,7 +2,6 @@ import { schemaType } from "@/components/auth/login"
 import { ENV } from "@/utils/constants"
 
 
-
 async function Login(data: schemaType) {
     try {
         const url = `${ENV.API_URL}/${ENV.ENDPOINTS.AUTH.LOGIN}`
@@ -26,6 +25,5 @@ async function Login(data: schemaType) {
     }
 
 }
-
 
 export { Login }

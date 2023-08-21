@@ -8,7 +8,7 @@ export default function Pagination(props: any) {
     let newActualPage = 1
 
     const renderPageLinks = () => {
-        const links = [];
+        const links = []
 
 
         for (let i = 1; i <= totalPages; i++) {
@@ -25,9 +25,7 @@ export default function Pagination(props: any) {
         }
 
         return links;
-    };
-
-
+    }
 
     return (
         <div className="flex mb-5 items-center space-x-1">

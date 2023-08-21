@@ -1,12 +1,11 @@
-import { Product } from "@/app/types/product";
 import { ENV } from "@/utils/constants";
+
 
 export class Products {
 
-
     async GetProducts() {
         try {
-            const url = 'http://localhost:1337/api/products?populate=*'
+            const url = `${ENV.API_URL}/products?populate=*`
             const params = {
                 method: 'GET',
                 headers: {

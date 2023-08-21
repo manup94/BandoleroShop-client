@@ -10,7 +10,6 @@ export async function authFetch(url, params) {
     }
 
 
-
     if (!token) {
         logout()
     } else {

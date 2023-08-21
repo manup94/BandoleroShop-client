@@ -1,6 +1,7 @@
 import { ENV } from "@/utils/constants"
 import { authFetch } from "@/utils/authFetch"
 
+
 export class User {
     async getMe() {
 

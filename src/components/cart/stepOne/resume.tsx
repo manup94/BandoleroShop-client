@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { Product } from '@/app/types/product'
 
 
 export default function Resume(props: any) {
@@ -16,7 +17,7 @@ export default function Resume(props: any) {
             discount: 0,
             price: 0,
         }
-        products?.forEach(product => {
+        products?.forEach((product: Product): any => {
             const price = product.attributes.price - product.attributes.price * product.attributes.discount / 100
 
             totals = {

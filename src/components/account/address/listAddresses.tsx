@@ -4,15 +4,17 @@ import { Address as AddressCtrl } from "@/api/address"
 import { useAuth } from "@/hooks/useAuth"
 import AddressForm from "./addressForm"
 import Address from "./address"
+import { Address as AddressType } from "@/app/types/address"
 
 const addressCtrl = new AddressCtrl()
 
-function ListAddresses(props) {
+function ListAddresses(props: any) {
 
 
     const [addresses, setAddresses] = useState(null)
     const { user } = useAuth()
     const { reload, onReload } = props
+
 
     useEffect(() => {
         (async () => {
@@ -31,7 +33,7 @@ function ListAddresses(props) {
 
         <div className="flex  flex-col w-1/2">
             {addresses && addresses.length > 0 ? (
-                addresses.map((address: any) => (
+                addresses.map((address: AddressType) => (
                     <Address key={address.id} onReload={onReload} addressId={address.id} address={address.attributes} />
                 ))
             ) : (

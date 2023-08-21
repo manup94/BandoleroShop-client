@@ -1,8 +1,8 @@
 import { DateTime } from "luxon"
 import { useState } from "react"
-import { Image } from "semantic-ui-react"
 import { OrderModal } from "./orderModal"
 import Link from "next/link"
+import { Product } from "@/app/types/product"
 
 
 
@@ -20,7 +20,7 @@ export default function OrdersList(props: any) {
 
     const getTotalProducts = () => {
         let total = 0
-        products.forEach(product => {
+        products.forEach((product: Product): void => {
             total += product.quantity
         });
         return total
@@ -43,7 +43,7 @@ export default function OrdersList(props: any) {
                 <div className="flex flex-col sm:flex-row">
                     <div className="flex flex-col sm:w-2/3">
                         <h2 className="mb-4">Productos</h2>
-                        {products?.map((product) => (
+                        {products?.map((product: Product) => (
                             <div key={product.id} className="flex mb-3">
                                 <Link href={`/${product?.attributes.slug}`} className="text-black">
                                     <div className="flex items-center">

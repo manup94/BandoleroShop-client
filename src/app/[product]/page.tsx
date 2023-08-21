@@ -31,7 +31,6 @@ export default function page(props: any) {
                     <ProductDetailsCard product={product}></ProductDetailsCard>
                     :
                     <h2>Producto no encontrado</h2>
-
             }
         </div>
     )

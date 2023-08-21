@@ -12,7 +12,6 @@ import Orders from "./orders/orders";
 import { useCart } from "@/hooks/useCart";
 
 
-
 function Tabs() {
 
     const { deleteAllItems } = useCart()

@@ -1,5 +1,5 @@
-
 import { WishList } from "@/api/wishList"
+import { Product } from "@/app/types/product"
 import { useAuth } from "@/hooks/useAuth"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -45,7 +45,7 @@ export default function Wishlist() {
     return (
         wishList && wishList.length > 0 ?
             <div className="flex flex-col mx-auto space-y-4">
-                {wishList?.map((product, index) => (
+                {wishList?.map((product: Product, index: number) => (
                     <div key={index} className="flex flex-col justify-between sm:flex-row items-center p-4 bg-white shadow-md rounded">
                         <Link href={`/${product?.attributes.product.data.attributes.slug}`} className="text-black">
                             <div className="flex items-center space-x-4">

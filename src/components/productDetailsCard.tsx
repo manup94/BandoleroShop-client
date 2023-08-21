@@ -14,9 +14,6 @@ function ProductDetailsCard({ product }: { product: Product }) {
         imagesArr.push(image.attributes.formats.small.url)
     });
 
-
-
-
     return (
         < >
 

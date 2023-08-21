@@ -2,6 +2,7 @@ import { Product } from "@/app/types/product";
 import { authFetch } from "@/utils/authFetch";
 import { ENV } from "@/utils/constants";
 
+
 export class Cart {
     add(productId: number) {
         const products = this.getAll()
@@ -19,7 +20,6 @@ export class Cart {
 
     getAll() {
         const response = localStorage.getItem(ENV.CART)
-
 
         if (!response) {
             return []
