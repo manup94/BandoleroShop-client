@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 
 const productsCtrl = new Products()
 
-export default function page(props: any) {
+export default function ProductPage(props: any) {
 
     const [product, setProduct] = useState(null)
     const { params } = props
