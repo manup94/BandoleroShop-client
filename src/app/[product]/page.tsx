@@ -9,12 +9,12 @@ export default function ProductPage(props: any) {
 
     const [product, setProduct] = useState(null)
     const { params } = props
-    const slug = params.product
+    const name = params.product
 
     useEffect(() => {
         (async () => {
             try {
-                const result = await productsCtrl.GetOneProductBySlug(slug)
+                const result = await productsCtrl.GetOneProductByName(name)
                 setProduct(result.data[0])
 
 

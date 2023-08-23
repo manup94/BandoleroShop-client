@@ -32,7 +32,6 @@ export default function Navigation() {
 
     const closeSession = () => {
         logout()
-
         deleteAllItems()
     }
 
