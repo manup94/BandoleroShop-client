@@ -9,12 +9,12 @@ export default function ProductPage(props: any) {
 
     const [product, setProduct] = useState(null)
     const { params } = props
-    const name = params.product
+    const slug = params.product
 
     useEffect(() => {
         (async () => {
             try {
-                const result = await productsCtrl.GetOneProductByName(name)
+                const result = await productsCtrl.GetOneProductBySlug(slug)
                 setProduct(result.data[0])
 
 
@@ -22,7 +22,7 @@ export default function ProductPage(props: any) {
                 console.log(error)
             }
         })()
-    }, [])
+    }, [slug])
 
     return (
         <div className="container mx-auto p-10 ">

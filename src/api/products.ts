@@ -47,7 +47,7 @@ export class Products {
         }
     }
 
-    async GetOneProductByName(text: string) {
+    async GetOneProductBySlug(text: string) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCTS}?filters[slug][$eq]=${text}&populate=*`
             const params = {
