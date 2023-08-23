@@ -1,5 +1,7 @@
 # Bandolero-Shop
 
+https://bandolero-shop-client.vercel.app/
+
 ## Introduction
 
 I have created a fully functional e-commerce website in this project, addressing almost all the necessary aspects for a seamless shopping experience. While a inventory control system is yet to be implemented, the site enables users to add products to both their wishlist and their shopping cart. Subsequently, they can proceed through the checkout process, which is connected to Stripe on the backend.
