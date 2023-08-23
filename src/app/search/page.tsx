@@ -24,7 +24,8 @@ export default function SearchPage(props: any) {
         setActualPage(newPage)
     }
 
-    const { searchParams, params } = props
+    const { searchParams } = props
+    console.log(searchParams.s, actualPage);
 
 
     useEffect(() => {
@@ -33,7 +34,7 @@ export default function SearchPage(props: any) {
                 const result = await productsCtrl.GetOneProduct(searchParams.s, actualPage)
                 setProducts(result.data)
                 setPagination(result.meta.pagination)
-                console.log(products);
+
 
             } catch (error) {
                 console.log(error)
