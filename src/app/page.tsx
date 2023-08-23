@@ -70,6 +70,7 @@ function HomePage() {
               <li key={category.attributes.slug} className='hover:underline  flex flex-col items-center'>
                 <Link className='flex flex-col text-black align-middle justify-center' href={`/products/${category.attributes.slug}`}>
                   <img className='w-10 m-auto ' src={category.attributes.icon.data.attributes.url} alt={category.attributes.title} />
+                  <h2>{category.attributes.title}</h2>
                 </Link>
               </li>
             ))}
