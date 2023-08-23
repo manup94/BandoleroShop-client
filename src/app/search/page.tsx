@@ -3,6 +3,7 @@ import { Products } from "@/api/products";
 import Pagination from "@/components/pagination";
 import ProductsList from "@/components/productsList";
 import { useEffect, useState } from "react";
+import { useSearchParams } from 'next/navigation'
 
 interface PaginationInfo {
     totalCount: number;
@@ -12,7 +13,6 @@ interface PaginationInfo {
 }
 
 const productsCtrl = new Products()
-
 
 export default function SearchPage(props: any) {
 
@@ -24,14 +24,18 @@ export default function SearchPage(props: any) {
         setActualPage(newPage)
     }
 
-    const { searchParams } = props
-    console.log(searchParams.s, actualPage);
+
+
+
+    const searchParams = useSearchParams()
+
+    const search = searchParams.get('search')
 
 
     useEffect(() => {
         (async () => {
             try {
-                const result = await productsCtrl.GetOneProduct(searchParams.s, actualPage)
+                const result = await productsCtrl.GetOneProduct(search, actualPage)
                 setProducts(result.data)
                 setPagination(result.meta.pagination)
 
@@ -40,7 +44,7 @@ export default function SearchPage(props: any) {
                 console.log(error)
             }
         })()
-    }, [searchParams.s, actualPage])
+    }, [search, actualPage])
 
 
     return (
