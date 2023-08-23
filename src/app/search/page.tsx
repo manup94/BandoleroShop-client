@@ -30,6 +30,7 @@ export default function SearchPage(props: any) {
     const searchParams = useSearchParams()
 
     const search = searchParams.get('search')
+    console.log(search);
 
 
     useEffect(() => {
