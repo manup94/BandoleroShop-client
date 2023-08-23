@@ -6,7 +6,7 @@ import { AddCartIcon } from "./addCartIcon"
 
 function ProductCard({ product }: { product: Product }) {
 
-    const mainImg = product.attributes.mainImg.data.attributes.formats.medium.url
+    const mainImg = product?.attributes.mainImg.data.attributes.formats?.medium.url
 
     return (
         < >

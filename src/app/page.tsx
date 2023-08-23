@@ -17,7 +17,7 @@ function HomePage() {
 
   // const [products, setProducts] = useState()
   // const [categories, setCategories] = useState()
-  const [products, setProducts] = useState<Product[]>([]); // Inicializa con un array vacío
+  const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([]);
 
   const getNewProducts = async () => {
