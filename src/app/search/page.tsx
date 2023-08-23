@@ -24,14 +24,9 @@ export default function SearchPage(props: any) {
         setActualPage(newPage)
     }
 
-
-
-
     const searchParams = useSearchParams()
 
-    const search = searchParams.get('search')
-    console.log(search);
-
+    const search = searchParams.get('s')
 
     useEffect(() => {
         (async () => {
