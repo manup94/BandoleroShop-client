@@ -51,7 +51,7 @@ export class Cart {
 
     delete(productId: number) {
         const products = this.getAll()
-        const updateProducts = products.filter((product: Product) => product.id !== productId)
+        const updateProducts = products.filter((product: Product | any) => product.id !== productId)
 
         localStorage.setItem(ENV.CART, JSON.stringify(updateProducts))
     }

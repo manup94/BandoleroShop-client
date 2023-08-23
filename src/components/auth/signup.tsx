@@ -24,7 +24,7 @@ export function SignUpForm({ onLogin, onOpen }: { onLogin: () => void; onOpen: (
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
     })
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = handleSubmit((data: any) => {
 
         setLoading(true)
         SignUp({

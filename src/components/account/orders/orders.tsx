@@ -32,7 +32,8 @@ export default function Orders() {
             {
                 orders?.map((order: OrderType) => {
                     return (
-                        <div className="p-5 w-1/2 mx-auto  hover:cursor-pointer hover:border-green-500 border-2 mt-2 mb-2 rounded-md border-black">
+                        <div key={order.id}
+                            className="p-5 w-1/2 mx-auto  hover:cursor-pointer hover:border-green-500 border-2 mt-2 mb-2 rounded-md border-black">
                             <OrdersList order={order} />
 
                         </div>

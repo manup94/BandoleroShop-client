@@ -1,7 +1,8 @@
 import { Product } from "@/app/types/product"
 import Link from "next/link"
 import WhisListIcon from "./whisListIcon"
-import AddCartIcon from "./addCartIcon"
+import { AddCartIcon } from "./addCartIcon"
+
 
 function ProductCard({ product }: { product: Product }) {
 

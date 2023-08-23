@@ -95,9 +95,10 @@ export default function Resume(props: any) {
                 </div>
 
                 <button
-                    disabled={!addressSelected}
+                    // disabled={!addressSelected}
+                    disabled={!addressSelected || loading}
                     onClick={onPay}
-                    loading={loading}
+                    // loading={loading}
                     className="bg-[#1e293b] w-4/5    hover:bg-blue-700 text-white font-bold py-2 rounded">
                     {loading ?
                         <svg className="animate-spin mx-auto  w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

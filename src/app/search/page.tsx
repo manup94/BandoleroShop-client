@@ -4,13 +4,20 @@ import Pagination from "@/components/pagination";
 import ProductsList from "@/components/productsList";
 import { useEffect, useState } from "react";
 
+interface PaginationInfo {
+    totalCount: number;
+    pageCount: number;
+    currentPage: number;
+    perPage: number;
+}
+
 const productsCtrl = new Products()
 
 
 export default function SearchPage(props: any) {
 
     const [products, setProducts] = useState(null)
-    const [pagination, setPagination] = useState<object | null>(null)
+    const [pagination, setPagination] = useState<PaginationInfo | null>(null)
     const [actualPage, setActualPage] = useState(1)
 
     const changePage = (newPage: number) => {

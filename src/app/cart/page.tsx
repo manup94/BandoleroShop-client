@@ -16,7 +16,9 @@ export default function CartPage() {
     const router = useRouter()
     const { cart } = useCart()
     const searchParams = useSearchParams();
-    const currentStep = searchParams.get('step')
+    // const currentStep = searchParams.get('step')
+    const currentStep = parseInt(searchParams.get('step'), 10)
+
     const [products, setProducts] = useState(null)
 
     useEffect(() => {
@@ -36,7 +38,10 @@ export default function CartPage() {
         )()
     }, [cart])
 
-    if (!user) router.push('/')
+    if (!user) {
+        router.push('/')
+        return null
+    }
 
     return (
         <div >

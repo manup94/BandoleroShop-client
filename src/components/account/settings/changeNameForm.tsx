@@ -23,7 +23,7 @@ function ChangeNameForm() {
         resolver: zodResolver(schema)
     })
 
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = handleSubmit((data: any) => {
         userCtrl.updateMe(user.id, data)
         reset()
         setIsSuccess(true)

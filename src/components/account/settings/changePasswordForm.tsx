@@ -29,7 +29,7 @@ function ChangePasswordForm() {
         })
 
 
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = handleSubmit((data: any) => {
         if (data.password !== data.confirmPassword) {
             setError('confirmPassword', {
                 type: 'manual',

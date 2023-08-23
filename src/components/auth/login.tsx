@@ -1,38 +1,46 @@
-import { Login } from '@/api/auth/login'
-import { useAuth } from '@/hooks/useAuth'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as Dialog from '@radix-ui/react-dialog'
-import { Cross2Icon } from '@radix-ui/react-icons'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+
+import * as Dialog from '@radix-ui/react-dialog';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Login } from '@/api/auth/login';
+import { useAuth } from '@/hooks/useAuth';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const schema = z.object({
     identifier: z.string().min(1, "Todos los campos son obligatorios"),
     password: z.string().min(1, "Todos los campos son obligatorios")
-})
+});
 
-export type schemaType = z.infer<typeof schema>
+export type schemaType = z.infer<typeof schema>;
 
-export function LoginForm({ onSignUp, onLoginSuccess }: { onSignUp: () => void }) {
+interface LoginFormProps {
+    onSignUp: () => void;
+    onLoginSuccess: () => void;
+}
 
-    const [isLoading, setLoading] = useState(false)
-    const { login } = useAuth()
+export function LoginForm(props: LoginFormProps) {
+
+    const [isLoading, setLoading] = useState(false);
+    const { login } = useAuth();
 
     const { register, handleSubmit, formState: { errors }, setError } = useForm<schemaType>({
         resolver: zodResolver(schema)
-    })
+    });
+
     const onSubmit = handleSubmit((data) => {
-        setLoading(true)
+        setLoading(true);
         Login(data)
             .then((res) => {
-
-                login(res.jwt)
-                onLoginSuccess()
+                login(res.jwt);
+                props.onLoginSuccess(); // Llama a la prop onLoginSuccess pasada desde AuthDialog
             })
-            .catch(() => { setError('password', { message: 'contraseña o usuario incorrectos' }) })
-            .finally(() => setLoading(false))
-    })
+            .catch(() => {
+                setError('password', { message: 'contraseña o usuario incorrectos' });
+            })
+            .finally(() => setLoading(false));
+    });
 
     return <>
         <Dialog.Title className="text-mauve12 m-5 text-[17px] font-medium">
@@ -69,7 +77,7 @@ export function LoginForm({ onSignUp, onLoginSuccess }: { onSignUp: () => void }
 
             <div className="mt-[25px] flex justify-between ">
 
-                <p >¿No tienes cuenta aun? <span role="button" className='font-bold' onClick={onSignUp}>Haz click aqui</span></p>
+                <p >¿No tienes cuenta aun? <span role="button" className='font-bold' onClick={props.onSignUp}>Haz click aqui</span></p>
 
                 <button type='submit' disabled={isLoading} className=" bg-green4 disabled:animate-pulse  text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                     {isLoading ?
@@ -92,4 +100,6 @@ export function LoginForm({ onSignUp, onLoginSuccess }: { onSignUp: () => void }
                 </button>
             </Dialog.Close>
         </form></>
+
 }
+

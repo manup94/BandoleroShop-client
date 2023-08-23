@@ -1,7 +1,8 @@
 import { Product } from "@/app/types/product"
 import Carousel from "./carousel"
 import WhisListIcon from "./whisListIcon"
-import AddCartIcon from "./addCartIcon"
+import { AddCartIcon } from "./addCartIcon"
+
 
 
 function ProductDetailsCard({ product }: { product: Product }) {

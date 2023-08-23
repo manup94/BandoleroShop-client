@@ -4,8 +4,10 @@ export type Product = {
         price: number
         releaseDate: string
         description: string
-        category: string
+        category: string | any
         slug: string
+        discount: number
+        images: string | any
         mainImg: {
             data: {
                 attributes: {
@@ -21,7 +23,8 @@ export type Product = {
             }
         }
 
-    }
-    id: number
+    } | any
+    quantity: number
+    id: string
 
 }

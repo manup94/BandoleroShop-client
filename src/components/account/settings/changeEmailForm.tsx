@@ -30,7 +30,7 @@ function ChangeEmailForm() {
         })
 
 
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = handleSubmit((data: any) => {
 
         if (data.email !== data.confirmEmail) {
             setError('confirmEmail', {
