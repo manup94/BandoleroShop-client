@@ -49,7 +49,7 @@ export default function SearchPage(props: any) {
 
     return (
         <div className="container mx-auto p-10">
-            {products?.length !== 0 && searchParams.s !== '' ? (
+            {products?.length !== 0 && search !== '' ? (
                 <>
                     <ProductsList products={products}></ProductsList>
                     <hr className="m-7" />
