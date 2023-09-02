@@ -1,6 +1,6 @@
 export const ENV = {
-    SERVER_HOST: 'https://strapi-ktbr.onrender.com',
-    API_URL: 'https://strapi-ktbr.onrender.com/api',
+    SERVER_HOST: 'https://bandoleroshop-server.onrender.com',
+    API_URL: 'https://bandoleroshop-server.onrender.com/api',
     ENDPOINTS: {
         AUTH: {
             REGISTER: 'auth/local/register',
